@@ -209,16 +209,20 @@ public abstract class NetworkContractImpl
             return connectionParameter;
         }
 
-        private void setBaseUrl(String baseUrl){
+
+        @VisibleForTesting
+        void setBaseUrl(String baseUrl){
             this.baseUrl = baseUrl;
         }
 
-        private void setDestinationUrl(String destinationUrl){
+        @VisibleForTesting
+        void setDestinationUrl(String destinationUrl){
             this.baseUrl = destinationUrl;
         }
 
+
         @VisibleForTesting
-        private void setConnectionParameter(ConnectionParameter connectionParameter){
+        void setConnectionParameter(ConnectionParameter connectionParameter){
             this.connectionParameter  = connectionParameter;
         }
     }
