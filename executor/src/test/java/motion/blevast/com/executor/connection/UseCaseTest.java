@@ -14,6 +14,8 @@ import motion.blevast.com.executor.connection.NetworkContractImpl;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -36,17 +38,21 @@ public class UseCaseTest {
     }
 
     @Test
-    public void test_use_case() throws IOException {
+    public void test_use_case_connection() throws IOException {
 
         //Check if the network contract is null or not.
         assertNotNull(networkContract);
-        //Execute the usecase
-        networkContract.executeUsecase(requestValues, usecaseCallback);
-        //Mock the Httpurl connection
+        //Execute the UseCase
+        verify(networkContract, times(0)).executeUsecase(requestValues, usecaseCallback);
+        //Asserts the response values are not null
+        when(requestValues.getBaseUrl()).thenReturn("return url is returned!!!");
+        assertNotNull(requestValues.getBaseUrl());
+        //Mock a string response
+        //Mock the HttpUrl connection
         HttpURLConnection httpURLConnection = mock(HttpURLConnection.class);
         //Mock the response out
         when(httpURLConnection.getResponseCode()).thenReturn(200);
-
+        //when(httpURLConnection.getInputStream()).thenReturn()
 
     }
 }

@@ -177,6 +177,11 @@ public abstract class NetworkContractImpl
         public String getResponse() {
             return response;
         }
+
+        @VisibleForTesting
+        void setResponse(String response){
+            this.response = response;
+        }
     }
 
     //Request Values
