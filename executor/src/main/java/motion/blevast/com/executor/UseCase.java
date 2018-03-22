@@ -2,7 +2,7 @@ package motion.blevast.com.executor;
 
 /**
  *
- * This are like the entry points to the data-android layer
+ * These are likely to be the entry points to the data-android layer
  * and also exit points from android-data layer or whichever way you
  * wish to think it.
  *
@@ -13,7 +13,7 @@ package motion.blevast.com.executor;
  * RESponse--these are values to be reported back onSuccess()
  * ERRor--these are values to be reported back onError()
  *
- * This is a self executable task()
+ * This is a self executable task() as in the context of a use case
  */
 
 public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends UseCase.ResponseValues, ERR extends UseCase.Error> {
@@ -22,6 +22,7 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
     private REQ requestValues;
     private RES responseValues;
 
+    //A Usecase callback for response and Error
     private UsecaseCallback<RES, ERR> usecaseCallback;
     public REQ getRequestValues() {
         return requestValues;
@@ -43,8 +44,7 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
         this.usecaseCallback = usecaseCallback;
     }
 
-    //A run for each thread that is fired
-    //A line of execution for each task/usecase
+    //A usecase is a self execution package
     void run(){ executeUsecase(requestValues, usecaseCallback); }
 
     //Inherited in the sub-classes/usecases

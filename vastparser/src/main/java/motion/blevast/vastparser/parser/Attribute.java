@@ -17,7 +17,7 @@ import java.lang.annotation.RetentionPolicy;
  * <a herf = https://github.com/loopme/loopme-android-vpaid-sdk></a>
  */
 
-@Retention(RetentionPolicy.RUNTIME)
+@Retention(RetentionPolicy.SOURCE)
 public @interface Attribute {
 
     String value() default "";

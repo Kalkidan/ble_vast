@@ -12,8 +12,8 @@ public class TestThreadPoolScheduler implements UsecaseScheduler {
     }
 
     @Override
-    public <V extends UseCase.ResponseValues, E extends UseCase.Error> void notifyResponse(V response, UsecaseCallback<V, E> useCaseCallback) {
-            useCaseCallback.onSuccess(response);
+    public <V extends UseCase.ResponseValues, E extends UseCase.Error> void onSuccess(V response, UsecaseCallback<V, E> useCaseCallback) {
+        useCaseCallback.onSuccess(response);
     }
 
     @Override

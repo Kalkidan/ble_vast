@@ -24,8 +24,6 @@ public class VastProcessorImplTest extends BaseTest{
     @Override
     public void setUp() {
         super.setUp();
-
-
     }
 
     @Test

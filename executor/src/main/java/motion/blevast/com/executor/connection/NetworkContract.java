@@ -9,5 +9,7 @@ import java.io.InputStream;
  */
 
 public interface NetworkContract<RESPONSE extends BaseResponse> {
+
+    //Creates a response for the inputstream data
     RESPONSE createResponse(int responseCode, InputStream data) throws IOException;
 }

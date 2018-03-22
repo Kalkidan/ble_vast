@@ -1,5 +1,6 @@
 package motion.blevast.com.executor.connection;
 
+import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -18,19 +19,22 @@ import motion.blevast.com.executor.util.Constants;
  * An implementation of a network contract
  */
 
-public abstract class NetworkContractImpl<RES extends BaseResponse>
+public abstract class NetworkContractImpl
         extends UseCase<NetworkContractImpl.RequestValues, NetworkContractImpl.ResponseValues, NetworkContractImpl.Error>
-        implements NetworkContract<RES> {
+        implements NetworkContract<StringResponse> {
 
     private static final String TAG = NetworkContractImpl.class.getSimpleName();
 
     /**
      * @param requestValues
+     * @param usecaseCallback A single line of execution for executing a usecase
      */
     @Override
     public void executeUsecase(RequestValues requestValues, UsecaseCallback usecaseCallback) {
         try {
-            call(new BaseRequestImpl(requestValues.baseUrl, requestValues.destinationUrl, requestValues.connectionParameter), usecaseCallback);
+            call(new BaseRequestImpl(requestValues.baseUrl,
+                    requestValues.destinationUrl,
+                    requestValues.connectionParameter), usecaseCallback);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,6 +207,19 @@ public abstract class NetworkContractImpl<RES extends BaseResponse>
 
         public ConnectionParameter getConnectionParameter() {
             return connectionParameter;
+        }
+
+        private void setBaseUrl(String baseUrl){
+            this.baseUrl = baseUrl;
+        }
+
+        private void setDestinationUrl(String destinationUrl){
+            this.baseUrl = destinationUrl;
+        }
+
+        @VisibleForTesting
+        private void setConnectionParameter(ConnectionParameter connectionParameter){
+            this.connectionParameter  = connectionParameter;
         }
     }
     //Error values
