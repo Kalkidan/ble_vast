@@ -1,12 +1,11 @@
 package motion.blevast.vastparser.controller;
 
+import motion.blevast.com.executor.connection.ConnectionParameter;
+
 /**
- * A vast task processor
+ * Created by kaltadesse on 3/23/18.
  */
 
 public interface VastProcessor {
-    //Parse vast contract
-    void parseVast();
-
-    void getVast();
+    boolean getVast(String destinationUrl, ConnectionParameter connectionParameter);
 }

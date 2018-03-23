@@ -1,20 +1,46 @@
 package motion.blevast.vastparser.controller;
 
+import android.text.TextUtils;
+
+import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UsecaseHandler;
+import motion.blevast.com.executor.connection.ConnectionParameter;
+import motion.blevast.com.executor.connection.NetworkContractImpl;
+import motion.blevast.com.executor.connection.StringResponse;
+import motion.blevast.com.executor.connection.StringResponseCreator;
 
 /**
- * A vast task processor implementation
+ * Vast process contract implementation.
  */
 
-class VastProcessorImpl implements VastProcessor {
+public class VastProcessorImpl implements VastProcessor{
 
-    //parse vast implementation
     @Override
-    public void parseVast() {
-    }
+    public boolean getVast(String destinationUrl, ConnectionParameter connectionParameter) {
 
-    //Make network call for getting vast
-    @Override
-    public void getVast() {
+        //Execute the networking UseCase
+        UsecaseHandler.getInstance().execute(new StringResponseCreator(),
+                new NetworkContractImpl.RequestValues(destinationUrl, null, connectionParameter),
+                new UsecaseCallback<StringResponse, NetworkContractImpl.Error>() {
+            //
+            @Override
+            public void onSuccess(StringResponse response) {
+                //
+                if(response.getResponse() != null){
 
+                }
+
+
+            }
+
+            //
+            @Override
+            public void onError(NetworkContractImpl.Error error) {
+
+            }
+        });
+        return true;
     }
+    //
+
 }

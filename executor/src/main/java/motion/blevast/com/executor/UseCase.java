@@ -62,8 +62,8 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
 
     //possible outcomes for response types
     //1.Response Values
-    //2.Request Values
-    //3.Error Values
+    //2.Request  Values
+    //3.Error    Values
     public  interface ResponseValues{}
     public  interface RequestValues {}
     public  interface Error{}

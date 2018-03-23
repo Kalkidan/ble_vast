@@ -1,10 +1,10 @@
 package motion.blevast.com.executor.connection;
 
-import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,9 +17,8 @@ import motion.blevast.com.executor.util.Constants;
  * An implementation of a network contract
  */
 
-public abstract class NetworkContractImpl
-        extends UseCase<NetworkContractImpl.RequestValues, NetworkContractImpl.ResponseValues, NetworkContractImpl.Error>
-        implements NetworkContract<StringResponse> {
+public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValues>
+        extends UseCase<NetworkContractImpl.RequestValues, NetworkContractImpl.ResponseValues, NetworkContractImpl.Error> {
 
     private static final String TAG = NetworkContractImpl.class.getSimpleName();
 
@@ -30,9 +29,7 @@ public abstract class NetworkContractImpl
     @Override
     public void executeUsecase(RequestValues requestValues, UsecaseCallback usecaseCallback) {
         try {
-            call(new BaseRequestImpl(requestValues.baseUrl,
-                    requestValues.destinationUrl,
-                    requestValues.connectionParameter), usecaseCallback);
+            call(requestValues, usecaseCallback);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,7 +40,7 @@ public abstract class NetworkContractImpl
      * @param request  call over the network, get the response and return it.
      */
 
-    private void call(BaseRequest request, UsecaseCallback callback) throws IOException {
+    private void call(RequestValues request, UsecaseCallback callback) throws IOException {
         URL requestUrl = new URL(request.getBaseUrl());
 
         /**
@@ -111,20 +108,21 @@ public abstract class NetworkContractImpl
                  * ConnectionHelper#readResponse(HttpURLConnection, ConnectionParams, OutputStreamWriter, UseCase.UseCaseCallback)
                  */
                 readResponse(httpURLConnection, request.getConnectionParameter(), outputStreamWriter, callback);
+                break;
             case HttpURLConnection.HTTP_NOT_AUTHORITATIVE:
             case HttpURLConnection.HTTP_RESET:
                 httpURLConnection.disconnect();
                 if (outputStreamWriter != null) {
                     outputStreamWriter.close();
                 }
-                callback.onError(new BaseError(httpURLConnection.getResponseCode(), "Response code failure!"));
+                callback.onError(new Error(httpURLConnection.getResponseCode(), "Response code failure!"));
                 break;
             default:
                 httpURLConnection.disconnect();
                 if (outputStreamWriter != null) {
                     outputStreamWriter.close();
                 }
-                callback.onError(new BaseError(httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage()));
+                callback.onError(new Error(httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage()));
                 break;
         }
     }
@@ -150,6 +148,8 @@ public abstract class NetworkContractImpl
         httpURLConnection.disconnect();
     }
 
+    abstract RESPONSE createResponse(int responseCode, InputStream data) throws IOException;
+
 
         /**
          * @param flags if we need any info/payload to be checked for any requirements.
@@ -160,42 +160,54 @@ public abstract class NetworkContractImpl
         return url.openConnection();
     }
 
-    //Response Values
-    public static class ResponseValues implements UseCase.ResponseValues{
+    //This is the base response for a networking call
+    public abstract static class ResponseValues<RESPONSE> implements UseCase.ResponseValues{
 
-        private String response;
+        //Response
+        private RESPONSE response;
+        // TODO:: we will think if we can genericize if but don't need it now.
+        private int responseCode;
 
         /**
-         * @param response  The generic response from a network call.
+         * @param responseCode  The generic response from a network call.
+         * @param inputStream
          */
-        public ResponseValues(String response){
-            this.response = response;
+        public ResponseValues(int responseCode, InputStream inputStream) throws IOException {
+            this.response = parseRawResponse(inputStream);
+            this.responseCode = responseCode;
         }
-        public String getResponse() {
+
+        public int getResponseCode() {
+            return responseCode;
+        }
+
+        public RESPONSE getResponse() {
             return response;
         }
 
-        @VisibleForTesting
-        void setResponse(String response){
+        void setResponse(RESPONSE response){
             this.response = response;
         }
+
+        //An object representation of the network response
+        abstract RESPONSE parseRawResponse(InputStream inputStream) throws IOException;
     }
 
     //Request Values
     public static class RequestValues  implements UseCase.RequestValues{
 
         private String baseUrl;
-        private String destinationUrl;
+        private String body;
         private ConnectionParameter connectionParameter;
 
         /**
          * @param baseUrl
          * @param connectionParameter
-         * @param destinationUrl
+         * @param body
          */
-        public RequestValues(String baseUrl, String destinationUrl, ConnectionParameter connectionParameter){
+        public RequestValues(String baseUrl, String body, ConnectionParameter connectionParameter){
             this.baseUrl = baseUrl;
-            this.destinationUrl = destinationUrl;
+            this.body = body;
             this.connectionParameter = connectionParameter;
         }
 
@@ -203,8 +215,8 @@ public abstract class NetworkContractImpl
             return baseUrl;
         }
 
-        String getDestinationUrl() {
-            return destinationUrl;
+        public String getBody() {
+            return body;
         }
 
         ConnectionParameter getConnectionParameter() {
@@ -223,6 +235,22 @@ public abstract class NetworkContractImpl
         }
     }
     //Error values
-    public static class Error implements UseCase.Error{}
+    public static class Error implements UseCase.Error{
+        private int responseCode;
+        private String errorMessage;
+
+        public Error(int responseCode, String errorMessage) {
+            this.responseCode = responseCode;
+            this.errorMessage = errorMessage;
+        }
+
+        public int getResponseCode() {
+            return responseCode;
+        }
+
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+    }
 
 }

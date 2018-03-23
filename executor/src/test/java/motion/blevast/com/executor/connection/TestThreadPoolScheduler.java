@@ -1,4 +1,8 @@
-package motion.blevast.com.executor;
+package motion.blevast.com.executor.connection;
+
+import motion.blevast.com.executor.UseCase;
+import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UsecaseScheduler;
 
 /**
  * A thread pool executor that executes, notify response, and notify error

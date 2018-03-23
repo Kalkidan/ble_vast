@@ -3,34 +3,35 @@ package motion.blevast.vastparser.controller;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import motion.blevast.com.executor.connection.NetworkContractImpl;
-import motion.blevast.vastparser.BaseTest;
+import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import motion.blevast.com.executor.connection.ConnectionParameter;
+import motion.blevast.com.executor.connection.StringResponse;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Vast Process Implementation test
  */
 @RunWith(MockitoJUnitRunner.class)
-public class VastProcessorImplTest extends BaseTest{
+public class VastProcessorImplTest {
 
-    @Mock VastProcessorImpl vastProcessor;
-    @Mock NetworkContractImpl.ResponseValues responseValues;
+    @InjectMocks VastProcessorImpl vastProcessorImpl;
+    private StringResponse stringResponse;
 
 
-    @Override
-    public void setUp() {
-        super.setUp();
+    @Before public void setUp() throws IOException{
     }
 
-    @Test
-    public void test_get_vast(){
-        vastProcessor.getVast();
-
+    @Test public void vast_processor_impl_test(){
+        //
+        assertNotNull(vastProcessorImpl);
+        assertTrue("The value is ", vastProcessorImpl.getVast(
+                "https://http://demo.tremorvideo.com/proddev/vast/vast_inline_nonlinear.xml.google.com",
+                new ConnectionParameter()));
     }
 }

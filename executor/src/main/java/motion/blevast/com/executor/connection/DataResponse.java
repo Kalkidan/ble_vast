@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 /**
  * A data response
  */
-class DataResponse extends BaseResponseImpl<DataResponse.Data>{
+class DataResponse extends NetworkContractImpl.ResponseValues<DataResponse.Data>{
 
     /**
      * @param serverCode

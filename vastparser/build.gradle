@@ -21,6 +21,10 @@ android {
         }
     }
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/resources'] } }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

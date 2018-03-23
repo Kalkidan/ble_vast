@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
  * A common format of response
  */
 
-public class StringResponse extends BaseResponseImpl<String>{
+public class StringResponse extends NetworkContractImpl.ResponseValues<String>{
 
     /**
      * @param inputStream
