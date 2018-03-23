@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import motion.blevast.com.executor.UsecaseCallback;
-import motion.blevast.com.executor.connection.NetworkContractImpl;
-
 import static junit.framework.TestCase.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;

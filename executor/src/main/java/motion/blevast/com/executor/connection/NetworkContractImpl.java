@@ -1,16 +1,13 @@
 package motion.blevast.com.executor.connection;
 
-import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-
 import motion.blevast.com.executor.UseCase;
 import motion.blevast.com.executor.UsecaseCallback;
 import motion.blevast.com.executor.util.Constants;
@@ -173,12 +170,9 @@ public abstract class NetworkContractImpl
         public ResponseValues(String response){
             this.response = response;
         }
-
         public String getResponse() {
             return response;
         }
-
-        @VisibleForTesting
         void setResponse(String response){
             this.response = response;
         }
@@ -202,31 +196,25 @@ public abstract class NetworkContractImpl
             this.connectionParameter = connectionParameter;
         }
 
-        public String getBaseUrl() {
+        String getBaseUrl() {
             return baseUrl;
         }
 
-        public String getDestinationUrl() {
+        String getDestinationUrl() {
             return destinationUrl;
         }
 
-        public ConnectionParameter getConnectionParameter() {
+        ConnectionParameter getConnectionParameter() {
             return connectionParameter;
         }
 
 
-        @VisibleForTesting
         void setBaseUrl(String baseUrl){
             this.baseUrl = baseUrl;
         }
-
-        @VisibleForTesting
         void setDestinationUrl(String destinationUrl){
             this.baseUrl = destinationUrl;
         }
-
-
-        @VisibleForTesting
         void setConnectionParameter(ConnectionParameter connectionParameter){
             this.connectionParameter  = connectionParameter;
         }
