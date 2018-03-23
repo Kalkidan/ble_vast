@@ -1,5 +1,7 @@
 package motion.blevast.com.executor.connection;
 
+import android.support.annotation.VisibleForTesting;
+
 /**
  * This will be used as a template for selecting the type of
  * call-- POST, GET, PUT, DELETE.

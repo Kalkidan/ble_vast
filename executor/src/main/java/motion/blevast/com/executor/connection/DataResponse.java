@@ -3,6 +3,7 @@ package motion.blevast.com.executor.connection;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 
 /**
  * A data response
@@ -15,6 +16,10 @@ class DataResponse extends BaseResponseImpl<DataResponse.Data>{
      */
     public DataResponse(int serverCode, InputStream inputStream) throws IOException {
         super(serverCode, inputStream);
+    }
+
+    DataResponse(int serverCode, HttpURLConnection httpURLConnection) throws IOException{
+        super(serverCode, httpURLConnection.getInputStream());
     }
 
     /**

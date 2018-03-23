@@ -4,11 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 
 import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -23,6 +21,7 @@ public class BaseResponseImplTest {
 
     //
     StringResponse stringResponse;
+    DataResponse dataResponse;
     HttpURLConnection httpURLConnection;
 
     //
@@ -35,6 +34,7 @@ public class BaseResponseImplTest {
         when(httpURLConnection.getInputStream()).thenReturn(
                 BaseResponseImplTest.class.getClassLoader().getResourceAsStream("vast_inline_linear.xml"));
         stringResponse = spy(new StringResponse(200, httpURLConnection));
+        dataResponse = spy(new DataResponse(200, httpURLConnection));
     }
 
     //
