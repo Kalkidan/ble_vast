@@ -1,1 +1,1 @@
-include ':app', ':executor', ':vastparser'
+include ':app', ':executor', ':vastparser', ':barcodelibrary'

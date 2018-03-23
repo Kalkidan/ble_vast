@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Motion</string>
+    <string name="description">QR Icon Holder</string>
 </resources>

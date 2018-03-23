@@ -6,9 +6,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import motion.blevast.com.executor.connection.NetworkContractImpl;
 import motion.blevast.vastparser.BaseTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 /**
@@ -17,8 +19,8 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class VastProcessorImplTest extends BaseTest{
 
-    @Mock
-    VastProcessorImpl vastProcessor;
+    @Mock VastProcessorImpl vastProcessor;
+    @Mock NetworkContractImpl.ResponseValues responseValues;
 
 
     @Override
@@ -29,5 +31,6 @@ public class VastProcessorImplTest extends BaseTest{
     @Test
     public void test_get_vast(){
         vastProcessor.getVast();
+
     }
 }

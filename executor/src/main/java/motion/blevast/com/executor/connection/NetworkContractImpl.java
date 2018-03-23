@@ -1,5 +1,6 @@
 package motion.blevast.com.executor.connection;
 
+import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Log;
 import java.io.BufferedReader;
@@ -173,6 +174,8 @@ public abstract class NetworkContractImpl
         public String getResponse() {
             return response;
         }
+
+        @VisibleForTesting
         void setResponse(String response){
             this.response = response;
         }

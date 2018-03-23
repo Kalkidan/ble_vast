@@ -26,7 +26,11 @@ abstract class BaseActivity<VIEWBINDING extends ViewDataBinding> extends AppComp
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Inflate each view
+        //Inflate each activity's view
         viewbinding = DataBindingUtil.setContentView(this, inflateView());
+    }
+
+    public VIEWBINDING getViewbinding() {
+        return viewbinding;
     }
 }

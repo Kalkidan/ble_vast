@@ -1,8 +1,11 @@
 package motion.blevast.com.executor.connection;
 
+import android.support.annotation.VisibleForTesting;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 
 /**
  * A common format of response
@@ -17,6 +20,10 @@ public class StringResponse extends BaseResponseImpl<String>{
      */
     public StringResponse(int serverCode, InputStream inputStream) throws IOException {
         super(serverCode, inputStream);
+    }
+
+    StringResponse(int serverCode, HttpURLConnection httpURLConnection) throws IOException {
+        super(serverCode, httpURLConnection.getInputStream());
     }
 
     /**

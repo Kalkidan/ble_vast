@@ -14,4 +14,6 @@ public class LandingActivity extends BaseActivity<ActivityMainBinding>{
     public int inflateView() {
         return R.layout.activity_main;
     }
+
+
 }

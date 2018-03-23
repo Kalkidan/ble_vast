@@ -20,6 +20,8 @@ public class ConnectionParameter {
         this.mRequestType = requestType;
     }
 
+    public ConnectionParameter(){}
+
     public ConnectionParameter(RequestType requestType, int timeoutMilliseconds) {
         mRequestType = requestType;
         mTimeout = timeoutMilliseconds;

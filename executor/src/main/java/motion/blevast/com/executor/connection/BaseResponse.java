@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * A base response for every response received if any
+ * A base response for every response received, if any
  */
 
 public interface BaseResponse<RESPONSE> {
