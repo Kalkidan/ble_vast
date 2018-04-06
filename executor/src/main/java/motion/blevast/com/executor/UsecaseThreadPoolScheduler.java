@@ -2,8 +2,7 @@ package motion.blevast.com.executor;
 
 
 import android.os.Handler;
-
-import java.util.concurrent.BlockingQueue;
+import android.util.Log;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +20,6 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
     public static final String TAG = UsecaseThreadPoolScheduler.class.getSimpleName();
 
     private final Handler useCaseHandler = new Handler();
-
     private ThreadPoolExecutor threadPoolExecutor;
 
     public UsecaseThreadPoolScheduler(){
@@ -45,6 +43,7 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
         useCaseHandler.post(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "Running onSuccess():");
                 useCaseCallback.onSuccess(response);
             }
         });
@@ -61,6 +60,7 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
         useCaseHandler.post(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "Running onError():");
                 useCaseCallback.onError(error);
             }
         });

@@ -1,1 +1,1 @@
-include ':app', ':executor', ':vastparser', ':barcodelibrary'
+include ':app', ':executor', ':parser', ':barcodelibrary', ':retrofit', ':data_binding'

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="trialModel"
+            type="motion.blevast.com.data_binding.model.TrialPageModel"/>
+
+        <variable
+            name="trialCallback"
+            type="motion.blevast.com.data_binding.callback.TrialPageCallback"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> trialCallback.onBackClicked(trialModel)}"/>
+
+
+    </LinearLayout>
+</layout>

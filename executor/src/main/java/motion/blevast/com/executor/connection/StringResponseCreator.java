@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
  * A string response creator
  */
 
-public class StringResponseCreator extends NetworkContractImpl {
+public class  StringResponseCreator extends NetworkContractImpl {
 
     /**
      * @param data

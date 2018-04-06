@@ -1,7 +1,5 @@
 package motion.blevast.com.executor.connection;
 
-import android.support.annotation.VisibleForTesting;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

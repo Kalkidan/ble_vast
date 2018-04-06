@@ -22,6 +22,8 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
 
     private static final String TAG = NetworkContractImpl.class.getSimpleName();
 
+    abstract RESPONSE createResponse(int responseCode, InputStream data) throws IOException;
+
     /**
      * @param requestValues
      * @param usecaseCallback A single line of execution for executing a usecase
@@ -68,13 +70,17 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         httpURLConnection.setConnectTimeout(timeout);
         httpURLConnection.setReadTimeout(timeout);
 
+        //This is for CORS cross-origin resource sharing
+        httpURLConnection.setRequestProperty("Access-Control-Allow-Origin", "*");
+
         /**
          * @see HttpURLConnection#setRequestMethod(String)
          */
         httpURLConnection.setRequestMethod(request.getConnectionParameter().getRequestType().toString());
         OutputStreamWriter outputStreamWriter = null;
 
-        if (RequestType.POST.equals(request.getConnectionParameter().getRequestType()) || RequestType.PUT.equals(request.getConnectionParameter().getRequestType())) {
+        if (RequestType.POST.equals(request.getConnectionParameter().getRequestType()) ||
+                RequestType.PUT.equals(request.getConnectionParameter().getRequestType())) {
             httpURLConnection.setDoOutput(true);
 
             /**
@@ -141,16 +147,13 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         /*
          * Send the response back
          */
-        useCaseCallback.onSuccess(createResponse(httpURLConnection.getResponseCode(),  httpURLConnection.getInputStream()));
+        useCaseCallback.onSuccess(createResponse(httpURLConnection.getResponseCode(),
+                httpURLConnection.getInputStream()));
         /**
          * Close the {@link OutputStreamWriter} and {@link BufferedReader}
          */
         httpURLConnection.disconnect();
     }
-
-    abstract RESPONSE createResponse(int responseCode, InputStream data) throws IOException;
-
-
         /**
          * @param flags if we need any info/payload to be checked for any requirements.
          *
@@ -180,15 +183,12 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         public int getResponseCode() {
             return responseCode;
         }
-
         public RESPONSE getResponse() {
             return response;
         }
-
         void setResponse(RESPONSE response){
             this.response = response;
         }
-
         //An object representation of the network response
         abstract RESPONSE parseRawResponse(InputStream inputStream) throws IOException;
     }
@@ -214,11 +214,9 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         String getBaseUrl() {
             return baseUrl;
         }
-
         public String getBody() {
             return body;
         }
-
         ConnectionParameter getConnectionParameter() {
             return connectionParameter;
         }
