@@ -1,33 +1,161 @@
 package motion.blevast.parser.parser;
 
+import android.content.Context;
 import android.text.TextUtils;
 
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.annotation.Annotation;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
-import motion.blevast.parser.vast.Vast;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import mf.javax.xml.transform.Source;
+import mf.javax.xml.transform.stream.StreamSource;
+import mf.javax.xml.validation.Schema;
+import mf.javax.xml.validation.SchemaFactory;
+import mf.javax.xml.validation.Validator;
+import mf.org.apache.xerces.jaxp.validation.XMLSchemaFactory;
 
 /**
  * The main line-of-thinking behind this is the idea that
  * the parser is generic and we wont have to do a separate
- * parser for each.
+ * parser for each. It takes a little time for parsing but
+ * we have a generic parser for that. And the time is not
+ * that high
  *
  */
 
 public class XmlParser {
 
     XmlPullParserFactory xmlPullParserFactory;
+
+
+    /**
+     *  @param doc this block will validate against
+     *            vast 2.0 schema
+     * @param context
+     */
+    public static boolean validateSchema(Document doc, WeakReference<Context> context, SchemaVersion schemaVersion) {
+
+        String schemaVer = null;
+
+        switch (schemaVersion){
+            case VERSION_2_0:
+                schemaVer = "vast_2_0_1_schema.xsd";
+                break;
+            case VERSION_3_0:
+                schemaVer = "vast_3_0_schema.xsd";
+                break;
+            case VERSION_4_0:
+                schemaVer = "vast_4_0_schema.xsd";
+                break;
+        }
+        /**
+         *
+         * Get the schema from the resources
+         */
+        InputStream stream = null;
+        try {
+            stream = context.get().getAssets().open(schemaVer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /**
+         *
+         * Build a {@link String} out of the xml string responses
+         */
+        String xml = xmlDocumentToString(doc);
+        boolean isValid = validate(stream, xml);
+
+        try {
+            stream.close();
+        } catch (IOException e) {
+
+        }
+        return isValid;
+    }
+
+    /**
+     * @param doc takes in the document and puts out a {@link DOMSource}
+     *            string transformation of it.
+     *
+     */
+    public static String xmlDocumentToString(Document doc) {
+
+        StringWriter stringWriter = null;
+
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+            stringWriter = new StringWriter();
+            transformer.transform(new DOMSource(doc), new StreamResult(stringWriter));
+
+
+        } catch (Exception e) {
+
+        }
+
+        return stringWriter.toString();
+    }
+
+    /**
+     * @param schemaStream
+     * @param xml  This will validate the schema
+     *
+     */
+    public static boolean validate(InputStream schemaStream, String xml) {
+
+        SchemaFactory factory = new XMLSchemaFactory();
+        Source schemaSource = new StreamSource(schemaStream);
+
+        Source xmlSource = new StreamSource(new ByteArrayInputStream(xml.getBytes()));
+        Schema schema;
+
+        try {
+            schema = factory.newSchema(schemaSource);
+            Validator validator = schema.newValidator();
+            validator.validate(xmlSource);
+
+        } catch (final Exception e) {
+            //TODO:: make sure we have reporting for this
+
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * @param classOfT
@@ -227,5 +355,22 @@ public class XmlParser {
             }
         }
         parser.next();
+    }
+
+    /**
+     * @param document
+     *
+     */
+    public static <T extends Document> T getDocument(String  document) throws ParserConfigurationException, IOException, SAXException {
+        /**
+         *
+         * Defines a factory API that enables applications to obtain a
+         * parser that produces DOM object trees from XML documents.
+         */
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = documentBuilderFactory.newDocumentBuilder();
+        InputSource inputSource = new InputSource();
+        inputSource.setCharacterStream(new StringReader(document));
+        return (T) db.parse(inputSource);
     }
 }

@@ -25,6 +25,6 @@ public class LandingActivity extends BaseActivity<ActivityMainBinding>{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new VastProcessorImpl().getVast("https://video-tags-staging.vrvm.com/2232/shadow_vast.xml",
-                new motion.blevast.com.executor.connection.ConnectionParameter(RequestType.GET));
+                new motion.blevast.com.executor.connection.ConnectionParameter(RequestType.GET), this);
     }
 }
