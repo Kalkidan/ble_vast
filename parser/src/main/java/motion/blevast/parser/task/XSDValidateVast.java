@@ -25,9 +25,9 @@ import motion.blevast.parser.parser.XmlParser;
 
 public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestValues, XSDValidateVast.ResponseValues, XSDValidateVast.Error>{
 
-    public abstract void useSelectedValuesForValidation();
+    public abstract void useSelectedValuesForValidation(String response);
 
-    public abstract void processVast(Document document);
+    public abstract void processVast(String  response);
 
     /**
      * @param usecaseCallback
@@ -44,7 +44,7 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
          * Validate it using XSD
          */
         try {
-           document = XmlParser.getDocument(requestValues.requestValues);
+           document = XmlParser.getDocument(requestValues.responseValues);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -58,10 +58,12 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
 
             if (XmlParser.validateSchema(document, requestValues.context, SchemaVersion.VERSION_3_0)){
 
-                //process vast
-                processVast(document);
+                //process vast using XSD
+                processVast(requestValues.responseValues);
             } else {
 
+                //use manual inspection
+                useSelectedValuesForValidation(requestValues.responseValues);
             }
         } else {
             //TODO:: report an Error due to conversion of the document
@@ -73,16 +75,16 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
 
     public static class RequestValues implements UseCase.RequestValues{
 
-        private String requestValues;
+        private String responseValues;
         private WeakReference<Context> context;
 
-        public RequestValues(String requestValues, Context context) {
-            this.requestValues = requestValues;
+        public RequestValues(String responseValues, Context context) {
+            this.responseValues = responseValues;
             this.context = new WeakReference<>(context);
         }
 
-        public String getRequestValues() {
-            return requestValues;
+        public String getResponseValues() {
+            return responseValues;
         }
     }
 

@@ -1,15 +1,21 @@
 package motion.blevast.parser.task;
 
-import org.w3c.dom.Document;
-
 /**
  * Process the vast
  */
 
-public class ProcessVast extends ManualValidateTast {
+public class ProcessVast extends ManualValidateVast {
 
+
+    //This checks the minimum requirements to play the video
     @Override
-    public void processVast(Document document) {
+    public void useSelectedValuesForValidation(String response) {
+
+    }
+
+    //This is when the vast is valid from the XSD point of view
+    @Override
+    public void processVast(String  response) {
 
     }
 }

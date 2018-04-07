@@ -54,8 +54,9 @@ public class XmlParser {
 
     /**
      *  @param doc this block will validate against
-     *            vast 2.0 schema
+     *             vast 2.0 schema
      * @param context
+     * @param schemaVersion
      */
     public static boolean validateSchema(Document doc, WeakReference<Context> context, SchemaVersion schemaVersion) {
 

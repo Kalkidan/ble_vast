@@ -5,6 +5,7 @@ import java.util.List;
 
 import motion.blevast.parser.parser.Attribute;
 import motion.blevast.parser.parser.Tag;
+import motion.blevast.parser.vastad.VastParser;
 
 /**
  *
@@ -40,8 +41,7 @@ public class Vast {
         return status;
     }
 
-
-   /* public VastParser.Builder getBuilder(){
-        return new VastParser.Builder(version, ad, status, new VastProcessorImpl());
-    }*/
+    public VastParser.Builder getBuilder(){
+        return new VastParser.Builder(version, ad, status);
+    }
 }

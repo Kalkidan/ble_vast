@@ -8,8 +8,9 @@ import motion.blevast.com.executor.UsecaseHandler;
 import motion.blevast.com.executor.connection.ConnectionParameter;
 import motion.blevast.com.executor.connection.NetworkContractImpl;
 import motion.blevast.com.executor.connection.StringResponseCreator;
+import motion.blevast.parser.task.ProcessVast;
 import motion.blevast.parser.task.XSDValidateVast;
-import motion.blevast.parser.task.ManualValidateTast;
+import motion.blevast.parser.task.ManualValidateVast;
 
 /**
  * Vast process contract implementation.
@@ -67,7 +68,7 @@ public class VastProcessorImpl implements VastProcessor{
      */
     @Override
     public void processVast(String vastResponse, Context context) {
-        UsecaseHandler.getInstance().execute(new ManualValidateTast(),
+        UsecaseHandler.getInstance().execute(new ProcessVast(),
                 new XSDValidateVast.RequestValues(vastResponse, context),
                 new UsecaseCallback<XSDValidateVast.ResponseValues, XSDValidateVast.Error>() {
             @Override
