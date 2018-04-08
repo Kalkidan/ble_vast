@@ -13,8 +13,7 @@ import motion.blevast.parser.parser.Tag;
 
 public class NonLinear {
 
-    @Attribute
-    String id;
+    @Attribute String id;
 
     @Attribute int width;
 
@@ -28,8 +27,7 @@ public class NonLinear {
 
     @Attribute boolean maintainAspectRatio;
 
-    @Tag
-    private String apiFramework;
+    @Tag private String apiFramework;
 
     @Tag private Duration duration;
 
