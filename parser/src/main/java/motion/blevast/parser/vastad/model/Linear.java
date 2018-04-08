@@ -16,6 +16,9 @@ public class Linear extends Creative{
     private boolean maintainAspectRatio;
     private boolean scalable;
 
+    public Linear(){
+        super();
+    }
     protected Linear(Parcel in) {
         super(in);
     }

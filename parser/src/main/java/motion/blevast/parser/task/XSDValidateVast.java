@@ -15,6 +15,7 @@ import motion.blevast.com.executor.UsecaseCallback;
 import motion.blevast.parser.parser.SchemaVersion;
 import motion.blevast.parser.parser.XSDParsingReport;
 import motion.blevast.parser.parser.XmlParser;
+import motion.blevast.parser.vastad.model.VastData;
 
 /**
  *
@@ -79,10 +80,20 @@ abstract class XSDValidateVast extends
 
     public static class ResponseValues implements UseCase.ResponseValues{
 
-        private String xSDValidationReport;
+        private VastData vastData;
+        private WeakReference<Context> context;
 
-        public void setXSDValidationReport(String xSDValidationReport) {
-            this.xSDValidationReport = xSDValidationReport;
+        public ResponseValues(VastData vastData, WeakReference<Context> context, int wrapperHitCount) {
+            this.vastData = vastData;
+            this.context = context;
+        }
+
+        public VastData getVastData() {
+            return vastData;
+        }
+
+        public WeakReference<Context> getContext() {
+            return context;
         }
     }
 
@@ -98,6 +109,10 @@ abstract class XSDValidateVast extends
 
         public String getResponseValues() {
             return responseValues;
+        }
+
+        public WeakReference<Context> getContext() {
+            return context;
         }
     }
 

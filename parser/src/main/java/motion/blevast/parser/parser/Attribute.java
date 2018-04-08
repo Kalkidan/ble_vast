@@ -1,7 +1,10 @@
 package motion.blevast.parser.parser;
 
+
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * A retention policy determines at what point annotation should be discarded.
@@ -17,7 +20,7 @@ import java.lang.annotation.RetentionPolicy;
  * <a herf = https://github.com/loopme/loopme-android-vpaid-sdk></a>
  */
 
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Attribute {
 
     String value() default "";

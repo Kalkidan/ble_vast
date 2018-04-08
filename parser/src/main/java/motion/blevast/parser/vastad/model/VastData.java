@@ -3,6 +3,7 @@ package motion.blevast.parser.vastad.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,11 @@ public class VastData implements Parcelable {
     private String survey;
     private String error;
     private String VASTAdTagUri;
-    private List<String> listOfImpression;
+    private List<String> listOfImpression = new ArrayList<>();
+    private Linear linear;
+    private NonLinear nonLinear;
+    private CompanionAd companionAd;
+    private boolean isWrapper;
 
     public VastData(String version){
         this.version = version;
@@ -80,5 +85,29 @@ public class VastData implements Parcelable {
 
     public void setImpression(String impression) {
         this.listOfImpression.add(impression);
+    }
+
+    public void setCompanionAd(CompanionAd companionAd) {
+        this.companionAd = companionAd;
+    }
+
+    public void setLinear(Linear linear) {
+        this.linear = linear;
+    }
+
+    public void setNonLinear(NonLinear nonLinear) {
+        this.nonLinear = nonLinear;
+    }
+
+    public void setWrapper(boolean wrapper) {
+        this.isWrapper = wrapper;
+    }
+
+    public boolean isWrapper() {
+        return isWrapper;
+    }
+
+    public String getVASTAdTagUri() {
+        return VASTAdTagUri;
     }
 }

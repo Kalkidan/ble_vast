@@ -7,6 +7,7 @@ public class Creative implements Parcelable{
 
     private String id;
 
+    public Creative(){}
 
     protected Creative(Parcel in) {
     }

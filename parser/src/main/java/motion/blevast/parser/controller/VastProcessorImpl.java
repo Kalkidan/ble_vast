@@ -7,8 +7,11 @@ import motion.blevast.com.executor.UsecaseCallback;
 import motion.blevast.com.executor.UsecaseHandler;
 import motion.blevast.com.executor.connection.ConnectionParameter;
 import motion.blevast.com.executor.connection.NetworkContractImpl;
+import motion.blevast.com.executor.connection.RequestType;
 import motion.blevast.com.executor.connection.StringResponseCreator;
 import motion.blevast.parser.task.ProcessVast;
+import motion.blevast.parser.util.VastUtil;
+import motion.blevast.parser.vastad.model.VastData;
 
 /**
  * Vast process contract implementation.
@@ -19,6 +22,13 @@ public class VastProcessorImpl implements VastProcessor{
 
     private static final String TAG =  VastProcessorImpl.class.getSimpleName();
 
+    private static final int   WRAPPER_HIT_COUNT = 5;
+
+    /**
+     * @param destinationUrl
+     * @param connectionParameter
+     * @param context
+     */
     @Override
     public boolean getVast(String destinationUrl, ConnectionParameter connectionParameter, final Context context) {
 
@@ -48,10 +58,6 @@ public class VastProcessorImpl implements VastProcessor{
                 }
             }
 
-            /**
-             * @param error
-             * onError
-             */
             @Override
             public void onError(NetworkContractImpl.Error error) {
 
@@ -72,6 +78,11 @@ public class VastProcessorImpl implements VastProcessor{
             @Override
             public void onSuccess(ProcessVast.ResponseValues response) {
 
+                //Check if we have a wrapper
+                VastData vastData = response.getVastData();
+                if(vastData.isWrapper() && VastUtil.getVastDataList().size() < WRAPPER_HIT_COUNT){
+                    getVast(vastData.getVASTAdTagUri(), new ConnectionParameter(RequestType.GET), response.getContext().get());
+                }
             }
 
             @Override

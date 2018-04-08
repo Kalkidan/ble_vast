@@ -174,7 +174,6 @@ public class XmlParser {
         return parseTag(parser, classOfT);
     }
 
-
     /**
      * @param classOfT
      * @param parser
@@ -229,20 +228,6 @@ public class XmlParser {
     }
 
     /**
-     * @param annotationType
-     * @param element
-     *
-     */
-    @SuppressWarnings("unchecked")
-    private static <T extends Annotation> T getAnnotation(AnnotatedElement element, Class<? extends Annotation> annotationType) {
-        for (Annotation annotation : element.getDeclaredAnnotations()) {
-            if (annotationType.isInstance(annotation)) {
-                return (T) annotation;
-            }
-        }
-        return null;
-    }
-    /**
      * @param parser
      * @param tagInstance
      *
@@ -257,7 +242,6 @@ public class XmlParser {
             }
         }
     }
-
 
     /**
      *
@@ -360,6 +344,22 @@ public class XmlParser {
         }
         parser.next();
     }
+
+    /**
+     * @param annotationType
+     * @param element
+     *
+     */
+    @SuppressWarnings("unchecked")
+    private static <T extends Annotation> T getAnnotation(AnnotatedElement element, Class<? extends Annotation> annotationType) {
+        for (Annotation annotation : element.getDeclaredAnnotations()) {
+            if (annotationType.isInstance(annotation)) {
+                return (T) annotation;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * @param document

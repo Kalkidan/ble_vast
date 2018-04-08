@@ -14,6 +14,6 @@ import java.lang.annotation.RetentionPolicy;
  * The default retention policy type is CLASS.
  * <a herf = https://github.com/loopme/loopme-android-vpaid-sdk></a>
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Text {
 }

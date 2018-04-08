@@ -21,6 +21,9 @@ import motion.blevast.parser.vast.Status;
 import motion.blevast.parser.vast.Survey;
 import motion.blevast.parser.vast.VASTAdTagUri;
 import motion.blevast.parser.vast.Wrapper;
+import motion.blevast.parser.vastad.model.CompanionAd;
+import motion.blevast.parser.vastad.model.Linear;
+import motion.blevast.parser.vastad.model.NonLinear;
 import motion.blevast.parser.vastad.model.VastData;
 
 /**
@@ -37,8 +40,10 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
     Status status;
 
     //Response Object
-    VastData vastCommon;
-    motion.blevast.parser.vastad.model.Linear linear;
+    VastData vastData;
+    Linear linear;
+    NonLinear nonLinear;
+    CompanionAd companionAd;
 
     /**
      * @param version
@@ -49,7 +54,10 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
         this.version = version;
         this.ads = ad;
         this.status = status;
-        this.vastCommon = new VastData();
+        this.vastData = new VastData(version);
+        this.linear = new Linear();
+        this.nonLinear = new NonLinear();
+        this.companionAd = new CompanionAd();
     }
 
     //Parse common info
@@ -65,7 +73,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     String text = adTitle.getText();
                     if(!TextUtils.isEmpty(text)){
                         Log.d(TAG, "<AdTitle> \t" + text);
-                        vastCommon.setAdTitle(text);
+                        vastData.setAdTitle(text);
                     }
                 }
                 AdSystem adSystem = inLine.getAdSystem();
@@ -73,7 +81,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     String text = adSystem.getSourceAdServer();
                     if(!TextUtils.isEmpty(text)){
                         Log.d(TAG, "<AdSystem> \t" + text);
-                        vastCommon.setAdSystem(text);
+                        vastData.setAdSystem(text);
                     }
                 }
                 Description description = inLine.getDescription();
@@ -81,7 +89,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     String text = description.getText();
                     if(!TextUtils.isEmpty(text)){
                         Log.d(TAG, "<Description> \t" + text);
-                        vastCommon.setDescription(text);
+                        vastData.setDescription(text);
                     }
                 }
                 Survey survey = inLine.getSurvey();
@@ -89,7 +97,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     String text = survey.getText();
                     if(!TextUtils.isEmpty(text)){
                         Log.d(TAG, "<Survey> \t" + text);
-                        vastCommon.setSurvey(text);
+                        vastData.setSurvey(text);
                     }
                 }
                 Error error = inLine.getError();
@@ -97,7 +105,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     String text = error.getText();
                     if(!TextUtils.isEmpty(text)){
                         Log.d(TAG, "<Error>" + text);
-                        vastCommon.setError(text);
+                        vastData.setError(text);
                     }
                 }
                 List<Impression> impressionList = inLine.getImpressionList();
@@ -105,10 +113,11 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     for(Impression impr : impressionList){
                         String text = impr.getText();
                         Log.d(TAG, "<Impression>" + text);
-                        vastCommon.setImpression(text);
+                        vastData.setImpression(text);
                     }
                 }
                 //Parse creative
+                this.vastData.setWrapper(false);
                 parseCreatives(inLine.getCreatives());
             } else {
                 Wrapper wrapper = currentAd.getWrapper();
@@ -118,7 +127,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                         String text = adSystem.getSourceAdServer();
                         if(!TextUtils.isEmpty(text)){
                             Log.d(TAG, "<AdSystem>" + text);
-                            vastCommon.setAdSystem(text);
+                            vastData.setAdSystem(text);
                         }
                     }
                     Error error = wrapper.getError();
@@ -126,24 +135,26 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                         String text = error.getText();
                         if(!TextUtils.isEmpty(text)){
                             Log.d(TAG, "<Error>" + text);
-                            vastCommon.setError(text);
+                            vastData.setError(text);
                         }
                     }
                     VASTAdTagUri vastAdTagUri = wrapper.getVastAdTagUri();
+                    String redirectUrl = vastAdTagUri.getText();
                     if(vastAdTagUri != null){
-                        String text = vastAdTagUri.getText();
-                        Log.d(TAG, "<VASTAdTagUri>" + text);
-                        vastCommon.setVASTAdTagUri(text);
+
+                        Log.d(TAG, "<VASTAdTagUri>" + redirectUrl);
+                        vastData.setVASTAdTagUri(redirectUrl);
                     }
                     List<Impression> impressionList = wrapper.getImpressionList();
                     if(!impressionList.isEmpty()){
                         for(Impression impr : impressionList){
                             String text = impr.getText();
                             Log.d(TAG, "<Impression>" + text);
-                            vastCommon.setImpression(text);
+                            vastData.setImpression(text);
                         }
                     }
                     //Parse Creative
+                    this.vastData.setWrapper(!TextUtils.isEmpty(redirectUrl));
                     parseCreatives(wrapper.getCreatives());
                 }
             }
@@ -156,6 +167,11 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
     @Override
     public void parseRequirements() {
 
+    }
+
+    @Override
+    public VastData getVastData() {
+        return this.vastData;
     }
 
     /**
@@ -205,38 +221,42 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
             MediaFiles mediaFiles = linear.getMediaFiles();
             if(mediaFiles != null && !mediaFiles.getMediaFileList().isEmpty()){
                 for(MediaFile mediaFile : mediaFiles.getMediaFileList()){
-                    //\\Bitrate
+                    //\\//\\Bitrate
                     Log.d(TAG, "<Bitrate> :" + mediaFile.getBitrate());
                     this.linear.setBitrate(mediaFile.getBitrate());
-                    //ApiFramework
+                    //\\//\\ApiFramework
                     Log.d(TAG, "<ApiFramework> :" + mediaFile.getApiFramework());
                     this.linear.setApiFramework(mediaFile.getApiFramework());
-                    //Delivery
+                    //\\//\\Delivery
                     Log.d(TAG, "<Delivery> :" + mediaFile.getDelivery());
                     this.linear.setDelivery(mediaFile.getDelivery());
-                    //Height
+                    //\\//\\Height
                     Log.d(TAG, "<Height> :" + mediaFile.getHeight());
                     this.linear.setHeight(mediaFile.getHeight());
-                    //Id
+                    //\\//\\Id
                     Log.d(TAG, "<Id> :" + mediaFile.getId());
                     this.linear.setId(mediaFile.getId());
-                    //Url
+                    //\\//\\Url
                     Log.d(TAG, "<URL> :" + mediaFile.getText());
                     this.linear.setMediaUrl(mediaFile.getText());
-                    //Width
+                    //\\//\\Width
                     Log.d(TAG, "<Width> :" + mediaFile.getWidth());
                     this.linear.setWidth(mediaFile.getWidth());
-                    //Type
+                    //\\//\\Type
                     Log.d(TAG, "<Type> :" + mediaFile.getType());
                     this.linear.setType(mediaFile.getType());
-                    //Aspect ratio
+                    //\\//\\Aspect ratio
                     Log.d(TAG, "<MaintainAspectRation> :" + mediaFile.isMaintainAspectRatio());
                     this.linear.isMaintainAspectRation(mediaFile.isMaintainAspectRatio());
-                    //Scalability
+                    //\\//\\Scalability
                     Log.d(TAG, "<Scalable> :" + mediaFile.isScalable());
                     this.linear.isScalable(mediaFile.isScalable());
+                    Log.d(TAG, "<............................................................> \n");
+                    Log.d(TAG, "<............................................................> \n");
+                    Log.d(TAG, "<............................................................> \n");
                 }
             }
+            this.vastData.setLinear(this.linear);
         }
     }
 }

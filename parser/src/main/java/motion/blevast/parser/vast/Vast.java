@@ -22,12 +22,11 @@ import motion.blevast.parser.vastad.VastParser;
  */
 public class Vast {
 
-    @Attribute
-    protected String version;
+    @Attribute private String version;
 
-    @Tag("Ad") protected List<Ad> ad = new ArrayList<>();
+    @Tag("Ad") private List<Ad> ad = new ArrayList<>();
 
-    @Tag protected Status status;
+    @Tag private Status status;
 
     public String getVersion() {
         return version;
