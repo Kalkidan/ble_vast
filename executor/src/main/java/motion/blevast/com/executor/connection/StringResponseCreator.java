@@ -18,8 +18,8 @@ public class  StringResponseCreator extends NetworkContractImpl {
      * create response from the network call.
      */
     @Override
-    public StringResponse createResponse(int responseCode, InputStream data) throws IOException {
-        return new StringResponse(responseCode, data);
+    public ResponseValues createResponse(int responseCode, InputStream data) throws IOException {
+        return new ResponseValues(responseCode, data);
     }
 
     public static class ResponseValues extends NetworkContractImpl.ResponseValues<String>{

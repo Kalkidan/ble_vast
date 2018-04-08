@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import motion.blevast.com.executor.UseCase;
 import motion.blevast.com.executor.UsecaseCallback;
 import motion.blevast.parser.parser.SchemaVersion;
+import motion.blevast.parser.parser.XSDParsingReport;
 import motion.blevast.parser.parser.XmlParser;
 
 /**
@@ -23,7 +24,8 @@ import motion.blevast.parser.parser.XmlParser;
  * or 2. Parse using tag by tag
  */
 
-public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestValues, XSDValidateVast.ResponseValues, XSDValidateVast.Error>{
+abstract class XSDValidateVast extends
+        UseCase<XSDValidateVast.RequestValues, XSDValidateVast.ResponseValues, XSDValidateVast.Error> implements XSDParsingReport{
 
     public abstract void useSelectedValuesForValidation(String response);
 
@@ -47,16 +49,19 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
            document = XmlParser.getDocument(requestValues.responseValues);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
+            getUsecaseCallback().onError(new Error(e.getMessage()));
         } catch (IOException e) {
             e.printStackTrace();
+            getUsecaseCallback().onError(new Error(e.getMessage()));
         } catch (SAXException e) {
             e.printStackTrace();
+            getUsecaseCallback().onError(new Error(e.getMessage()));
         }
 
         //Guard
         if(document != null){
 
-            if (XmlParser.validateSchema(document, requestValues.context, SchemaVersion.VERSION_3_0)){
+            if (XmlParser.validateSchema(document, requestValues.context, SchemaVersion.VERSION_3_0, this)){
 
                 //process vast using XSD
                 processVast(requestValues.responseValues);
@@ -67,11 +72,19 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
             }
         } else {
             //TODO:: report an Error due to conversion of the document
+
         }
 
     }
 
-    public static class ResponseValues implements UseCase.ResponseValues{}
+    public static class ResponseValues implements UseCase.ResponseValues{
+
+        private String xSDValidationReport;
+
+        public void setXSDValidationReport(String xSDValidationReport) {
+            this.xSDValidationReport = xSDValidationReport;
+        }
+    }
 
     public static class RequestValues implements UseCase.RequestValues{
 
@@ -88,5 +101,12 @@ public abstract class XSDValidateVast extends UseCase<XSDValidateVast.RequestVal
         }
     }
 
-    public static class Error implements UseCase.Error{}
+    public static class Error implements UseCase.Error{
+
+        private String message;
+
+        public Error(String message) {
+            this.message = message;
+        }
+    }
 }

@@ -37,5 +37,10 @@ public class VastParser {
             vastValuesPreparer.parseVast();
             return this;
         }
+
+        public Builder parseRequirements(){
+            vastValuesPreparer.parseRequirements();
+            return this;
+        }
     }
 }

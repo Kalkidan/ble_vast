@@ -28,7 +28,7 @@ import motion.blevast.parser.vastad.model.VastData;
  * defined by {@link VastValuesPreparer}
  */
 
-public class VastValuesPreparerImpl implements VastValuesPreparer{
+class VastValuesPreparerImpl implements VastValuesPreparer{
 
     private static final String TAG = VastValuesPreparerImpl.class.getSimpleName();
 
@@ -143,10 +143,19 @@ public class VastValuesPreparerImpl implements VastValuesPreparer{
                             vastCommon.setImpression(text);
                         }
                     }
+                    //Parse Creative
                     parseCreatives(wrapper.getCreatives());
                 }
             }
         }
+    }
+
+    //This will be parsing the minimum requirements
+    //for the Inline and Wrapper, one thing that makes sense for
+    //TODO:: we will user xpath for this validation
+    @Override
+    public void parseRequirements() {
+
     }
 
     /**

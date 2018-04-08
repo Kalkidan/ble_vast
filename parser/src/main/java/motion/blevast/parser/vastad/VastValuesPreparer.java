@@ -10,4 +10,6 @@ public interface VastValuesPreparer {
 
     //Parses the supplemental info
     void parseVast();
+
+    void parseRequirements();
 }

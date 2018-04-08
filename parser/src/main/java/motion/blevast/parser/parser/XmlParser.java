@@ -53,12 +53,13 @@ public class XmlParser {
 
 
     /**
-     *  @param doc this block will validate against
+     * @param doc this block will validate against
      *             vast 2.0 schema
      * @param context
      * @param schemaVersion
+     * @param xsdValidateVast
      */
-    public static boolean validateSchema(Document doc, WeakReference<Context> context, SchemaVersion schemaVersion) {
+    public static boolean validateSchema(Document doc, WeakReference<Context> context, SchemaVersion schemaVersion, XSDParsingReport xsdValidateVast) {
 
         String schemaVer = null;
 
@@ -89,7 +90,7 @@ public class XmlParser {
          * Build a {@link String} out of the xml string responses
          */
         String xml = xmlDocumentToString(doc);
-        boolean isValid = validate(stream, xml);
+        boolean isValid = validate(stream, xml, xsdValidateVast);
 
         try {
             stream.close();
@@ -134,9 +135,10 @@ public class XmlParser {
     /**
      * @param schemaStream
      * @param xml  This will validate the schema
+     * @param xsdValidateVast
      *
      */
-    public static boolean validate(InputStream schemaStream, String xml) {
+    public static boolean validate(InputStream schemaStream, String xml, XSDParsingReport xsdValidateVast) {
 
         SchemaFactory factory = new XMLSchemaFactory();
         Source schemaSource = new StreamSource(schemaStream);
@@ -150,8 +152,9 @@ public class XmlParser {
             validator.validate(xmlSource);
 
         } catch (final Exception e) {
-            //TODO:: make sure we have reporting for this
 
+            //XSD validation Report
+            xsdValidateVast.onXSDValidationReport(e.getMessage());
             return false;
         }
 
