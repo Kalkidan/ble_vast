@@ -265,7 +265,7 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
 
     private void prepareTrackingEvents(TrackingEvents trackingEvents) {
         //
-        Map<String, Map<String, String>>  trackingEventMap = new HashMap<>();
+        HashMap<String, Map<String, String>>  trackingEventMap = new HashMap<>();
         //
         if(trackingEvents != null){
             List<Tracking> trackingEventsList = trackingEvents.getTrackingList();
