@@ -2,9 +2,9 @@ package motion.blevast.parser.vastad.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Vast common attributes
@@ -12,6 +12,7 @@ import java.util.List;
 
 public class VastData implements Parcelable {
 
+    //Version
     private String version;
 
     //Common Vast Attributes
@@ -21,17 +22,21 @@ public class VastData implements Parcelable {
     private String survey;
     private String error;
     private String VASTAdTagUri;
+
+    //Impressions
     private List<String> listOfImpression = new ArrayList<>();
     private Linear linear;
     private NonLinear nonLinear;
     private CompanionAd companionAd;
     private boolean isWrapper;
+    private Map<String, Map<String,String>> trackingEventMap;
+    private String report;
+
+    //Wrapper hit count
+    int wrapperHitCount;
 
     public VastData(String version){
         this.version = version;
-    }
-
-    protected VastData(Parcel in) {
     }
 
     public static final Creator<VastData> CREATOR = new Creator<VastData>() {
@@ -47,7 +52,6 @@ public class VastData implements Parcelable {
     };
 
     public VastData() {
-
     }
 
     @Override
@@ -56,7 +60,24 @@ public class VastData implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(this.version);
+        parcel.writeString(this.adSystem);
+        parcel.writeString(this.adTitle);
+        parcel.writeString(this.description);
+        parcel.writeString(this.error);
+        parcel.writeString(this.report);
+        parcel.writeString(this.survey);
+        parcel.writeString(this.VASTAdTagUri);
+        parcel.writeStringList(this.listOfImpression);
+        parcel.writeByte((byte) (this.isWrapper ? 1 : 0));
+        parcel.writeParcelable(this.linear, flags);
+        parcel.writeParcelable(this.nonLinear, flags);
+        parcel.writeParcelable(this.companionAd, flags);
+        parcel.writeInt(this.wrapperHitCount);
+    }
+
+    protected VastData(Parcel in) {
     }
 
     public void setAdTitle(String adTitle) {
@@ -109,5 +130,69 @@ public class VastData implements Parcelable {
 
     public String getVASTAdTagUri() {
         return VASTAdTagUri;
+    }
+
+    public void setTrackingEventMap(Map<String,Map<String,String>> trackingEventMap) {
+        this.trackingEventMap = trackingEventMap;
+    }
+
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    public void setWrapperHitCount(int wrapperHitCount) {
+        this.wrapperHitCount = wrapperHitCount;
+    }
+
+    public Map<String, Map<String, String>> getTrackingEventMap() {
+        return trackingEventMap;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public CompanionAd getCompanionAd() {
+        return companionAd;
+    }
+
+    public int getWrapperHitCount() {
+        return wrapperHitCount;
+    }
+
+    public Linear getLinear() {
+        return linear;
+    }
+
+    public List<String> getListOfImpression() {
+        return listOfImpression;
+    }
+
+    public NonLinear getNonLinear() {
+        return nonLinear;
+    }
+
+    public String getAdSystem() {
+        return adSystem;
+    }
+
+    public String getAdTitle() {
+        return adTitle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public String getSurvey() {
+        return survey;
+    }
+
+    public String getVersion() {
+        return version;
     }
 }

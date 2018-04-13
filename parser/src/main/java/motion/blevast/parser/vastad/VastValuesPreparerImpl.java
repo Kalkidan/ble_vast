@@ -3,7 +3,10 @@ package motion.blevast.parser.vastad;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import motion.blevast.parser.vast.Ad;
 import motion.blevast.parser.vast.AdParameters;
 import motion.blevast.parser.vast.AdSystem;
@@ -19,6 +22,8 @@ import motion.blevast.parser.vast.MediaFile;
 import motion.blevast.parser.vast.MediaFiles;
 import motion.blevast.parser.vast.Status;
 import motion.blevast.parser.vast.Survey;
+import motion.blevast.parser.vast.Tracking;
+import motion.blevast.parser.vast.TrackingEvents;
 import motion.blevast.parser.vast.VASTAdTagUri;
 import motion.blevast.parser.vast.Wrapper;
 import motion.blevast.parser.vastad.model.CompanionAd;
@@ -251,12 +256,31 @@ class VastValuesPreparerImpl implements VastValuesPreparer{
                     //\\//\\Scalability
                     Log.d(TAG, "<Scalable> :" + mediaFile.isScalable());
                     this.linear.isScalable(mediaFile.isScalable());
-                    Log.d(TAG, "<............................................................> \n");
-                    Log.d(TAG, "<............................................................> \n");
-                    Log.d(TAG, "<............................................................> \n");
                 }
             }
             this.vastData.setLinear(this.linear);
+            prepareTrackingEvents(linear.getTrackingEvents());
         }
+    }
+
+    private void prepareTrackingEvents(TrackingEvents trackingEvents) {
+        //
+        Map<String, Map<String, String>>  trackingEventMap = new HashMap<>();
+        //
+        if(trackingEvents != null){
+            List<Tracking> trackingEventsList = trackingEvents.getTrackingList();
+            Map<String, String> eventTextMap = new HashMap<>();
+            for(Tracking tracking : trackingEventsList){
+                eventTextMap.put(tracking.getEvent(), tracking.getText());
+                trackingEventMap.put(tracking.getOffset(), eventTextMap);
+                Log.d(TAG, tracking.getEvent() + ":\t" + tracking.getText());
+            }
+        }
+        //
+        Log.d(TAG, "<............................................................> \n");
+        Log.d(TAG, "<............................................................> \n");
+        Log.d(TAG, "<............................................................> \n");
+        //
+        this.vastData.setTrackingEventMap(trackingEventMap);
     }
 }

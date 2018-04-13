@@ -42,6 +42,7 @@ abstract class XSDValidateVast extends
      */
     @Override
     public void executeUsecase(RequestValues requestValues, UsecaseCallback<ResponseValues, Error> usecaseCallback) {
+        //
         org.w3c.dom.Document document = null;
         /**
          * Validate it using XSD
@@ -50,12 +51,15 @@ abstract class XSDValidateVast extends
            document = XmlParser.getDocument(requestValues.responseValues);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
+            //
             getUsecaseCallback().onError(new Error(e.getMessage()));
         } catch (IOException e) {
             e.printStackTrace();
+            //
             getUsecaseCallback().onError(new Error(e.getMessage()));
         } catch (SAXException e) {
             e.printStackTrace();
+            //
             getUsecaseCallback().onError(new Error(e.getMessage()));
         }
 
@@ -82,18 +86,22 @@ abstract class XSDValidateVast extends
 
         private VastData vastData;
         private WeakReference<Context> context;
+        private String report;
 
-        public ResponseValues(VastData vastData, WeakReference<Context> context, int wrapperHitCount) {
+        public ResponseValues(VastData vastData, WeakReference<Context> context, String report) {
             this.vastData = vastData;
             this.context = context;
+            this.report = report;
         }
 
         public VastData getVastData() {
             return vastData;
         }
-
         public WeakReference<Context> getContext() {
             return context;
+        }
+        public String getReport() {
+            return report;
         }
     }
 
@@ -110,7 +118,6 @@ abstract class XSDValidateVast extends
         public String getResponseValues() {
             return responseValues;
         }
-
         public WeakReference<Context> getContext() {
             return context;
         }
@@ -119,7 +126,6 @@ abstract class XSDValidateVast extends
     public static class Error implements UseCase.Error{
 
         private String message;
-
         public Error(String message) {
             this.message = message;
         }

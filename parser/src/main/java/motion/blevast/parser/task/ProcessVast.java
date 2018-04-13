@@ -4,10 +4,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import motion.blevast.parser.parser.XmlParser;
-import motion.blevast.parser.util.VastUtil;
 import motion.blevast.parser.vast.Vast;
 import motion.blevast.parser.vastad.VastParser;
-import motion.blevast.parser.vastad.model.VastData;
 
 /**
  * Process the vast
@@ -18,14 +16,13 @@ public class ProcessVast extends ManualValidateVast {
     private final String TAG = ProcessVast.class.getSimpleName();
 
     private String report;
-    private int wrapperHitCount;
 
     //This checks the minimum requirements to play the video
     @Override
     public void useSelectedValuesForValidation(String response) {
-        //Minimum requirements for VAST
-        //TODO:: ideally we can use xpath for validation and its valid for this purpose
-        //TODO:: for now we will just process it and see if the required elements 're there
+         //Minimum requirements for VAST
+         //TODO:: ideally we can use xpath for validation and its valid for this purpose
+         //TODO:: for now we will just process it and see if the required elements 're there
         processVast(response);
     }
 
@@ -53,12 +50,11 @@ public class ProcessVast extends ManualValidateVast {
                         VastParser builder = vast.getBuilder().
                                 parseVast().
                                 build();
+
                         //
-                        VastData vastData = builder.getVastData();
-                        //
-                        VastUtil.storeVastData(vastData);
-                        //
-                        getUsecaseCallback().onSuccess(new ResponseValues(vastData, getRequestValues().getContext(), wrapperHitCount));
+                        getUsecaseCallback().onSuccess(
+                                new ResponseValues(builder.getVastData(),
+                                        getRequestValues().getContext(), report));
                     }
                 }
             } catch (Exception e) {
@@ -75,7 +71,6 @@ public class ProcessVast extends ManualValidateVast {
 
     @Override
     public void onXSDValidationReport(String report) {
-        //Set the report value on the XSD
-        this.report = report;
+          this.report = report;
     }
 }

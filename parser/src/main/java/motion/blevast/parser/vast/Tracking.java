@@ -11,13 +11,11 @@ import motion.blevast.parser.parser.Text;
  */
 public class Tracking {
 
-    @Attribute
-    private String event;
+    @Attribute private String event;
 
     @Attribute private String offset;
 
-    @Text
-    private String text;
+    @Text private String text;
 
     public String getEvent() {
         return event;

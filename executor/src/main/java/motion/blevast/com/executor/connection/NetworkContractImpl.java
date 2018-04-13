@@ -245,7 +245,6 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         public int getResponseCode() {
             return responseCode;
         }
-
         public String getErrorMessage() {
             return errorMessage;
         }
