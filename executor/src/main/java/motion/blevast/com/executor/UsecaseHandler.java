@@ -7,10 +7,9 @@ package motion.blevast.com.executor;
 
 public class UsecaseHandler {
 
-    private static UsecaseHandler INSTANCE;
 
     public static UsecaseHandler getInstance() {
-        return INSTANCE != null ? INSTANCE : new UsecaseHandler(new UsecaseThreadPoolScheduler());
+        return new UsecaseHandler(new UsecaseThreadPoolScheduler());
     }
 
     //A OS thread scheduler.

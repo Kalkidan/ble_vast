@@ -34,7 +34,7 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
     //Get UseCase callback
     //Execution results
     public UsecaseCallback<RES, ERR> getUsecaseCallback() {
-        return usecaseCallback;
+        return this.usecaseCallback;
     }
 
     /**
@@ -44,11 +44,12 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
         this.usecaseCallback = usecaseCallback;
     }
 
-    //A Self executing block
+    //A Self executing usecase block
     void run(){
         executeUsecase(requestValues, usecaseCallback);
     }
 
+    /****/
     //Inherited in the sub-classes/usecases
     public abstract void executeUsecase(REQ requestValues, UsecaseCallback<RES, ERR> usecaseCallback);
 
@@ -63,9 +64,10 @@ public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends Use
     }
 
     //possible outcomes for response types
-    //1.Response Values
-    //2.Request  Values
-    //3.Error    Values
+    //1. Response Values
+    //2. Request  Values
+    //3. Error    Values
+    //Set what we need here, so we can use it in general
     public  interface ResponseValues{}
     public  interface RequestValues {}
     public  interface Error{}

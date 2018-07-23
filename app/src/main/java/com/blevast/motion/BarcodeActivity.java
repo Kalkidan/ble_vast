@@ -149,9 +149,7 @@ public class BarcodeActivity extends AppCompatActivity{
              * @param surfaceHolder
              */
             @Override
-            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
-            }
+            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) { }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
