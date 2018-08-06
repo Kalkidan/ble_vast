@@ -37,7 +37,6 @@ public class TaskSchedulerImpl implements TaskScheduler{
 
     @Override
     public void execute(Runnable runnable) {
-
         //Execute the runnable
         threadPoolExecutor.execute(runnable);
     }

@@ -2,15 +2,16 @@ package motion.blevast.com.task;
 
 
 /**
- * A parent class task that
+ * An executable task parent class that
  * will be used as a {@link Runnable}
  */
-public abstract class Task<RES extends Task.ResponseValues, REQ extends Task.RequestValues, ERR extends Task.ErrorValues> implements Runnable{
-
+public abstract class Task<RES extends Task.ResponseValues,
+        REQ extends Task.RequestValues,
+        ERR extends Task.ErrorValues> implements Runnable{
 
     /**
      * REQ, RES, and ERR values
-     * generic for all the tasks.
+     * generic for all tasks that will extend this parent class.
      */
     private RES responseValues;
     private REQ requestValues;
@@ -40,15 +41,15 @@ public abstract class Task<RES extends Task.ResponseValues, REQ extends Task.Req
         this.responseValues = responseValues;
     }
 
+    public abstract void execute(REQ requestValues) throws Exception;
+
     @Override public void run() {
         try {
-            execute(requestValues);
+            execute(this.requestValues);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public abstract void execute(REQ requestValues) throws Exception;
 
     interface RequestValues{}
     interface ResponseValues{}
