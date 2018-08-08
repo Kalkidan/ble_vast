@@ -10,8 +10,8 @@ public interface UsecaseScheduler {
     void execute(Runnable runnable);
 
     <V extends UseCase.ResponseValues, E extends UseCase.Error> void onSuccess(final V response,
-                                                                                    final UsecaseCallback<V, E> useCaseCallback);
+                                                                                    final UseCaseCallback<V, E> useCaseCallback);
 
     <V extends UseCase.ResponseValues, E extends UseCase.Error> void onError(final E error,
-            final UsecaseCallback<V, E> useCaseCallback);
+            final UseCaseCallback<V, E> useCaseCallback);
 }

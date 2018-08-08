@@ -18,56 +18,58 @@ package motion.blevast.com.executor;
 
 public abstract class UseCase<REQ extends UseCase.RequestValues, RES extends UseCase.ResponseValues, ERR extends UseCase.Error> {
 
-    //Generic request and response values
+    // Generic request and
+    // response values
     private REQ requestValues;
     private RES responseValues;
 
-    //A Usecase callback for response and Error
-    private UsecaseCallback<RES, ERR> usecaseCallback;
+    // A Usecase callback for response and Error
+    private UseCaseCallback<RES, ERR> usecaseCallback;
+
     public REQ getRequestValues() {
-        return requestValues;
+        return this.requestValues;
     }
     public RES getResponseValues() {
-        return responseValues;
+        return this.responseValues;
     }
 
-    //Get UseCase callback
-    //Execution results
-    public UsecaseCallback<RES, ERR> getUsecaseCallback() {
+    // Get UseCase callback
+    // Execution results
+    public UseCaseCallback<RES, ERR> getUsecaseCallback() {
         return this.usecaseCallback;
     }
 
     /**
      * @param usecaseCallback
      */
-    public void setUsecaseCallback(UsecaseCallback<RES, ERR> usecaseCallback) {
+    public void setUsecaseCallback(UseCaseCallback<RES, ERR> usecaseCallback) {
         this.usecaseCallback = usecaseCallback;
     }
 
-    //A Self executing usecase block
+    // A Self executing UseCase block
     void run(){
-        executeUsecase(requestValues, usecaseCallback);
+        executeUsecase(this.requestValues, this.usecaseCallback);
     }
 
     /****/
-    //Inherited in the sub-classes/usecases
-    public abstract void executeUsecase(REQ requestValues, UsecaseCallback<RES, ERR> usecaseCallback);
+    // Inherited in the sub-classes/usecases
+    public abstract void executeUsecase(REQ requestValues, UseCaseCallback<RES, ERR> usecaseCallback);
 
-    //Sets request values
+    // Sets request values
     public void setRequestValues(REQ requestValues) {
         this.requestValues = requestValues;
     }
 
-    //Sets response values
+    // Sets response values
     public void setResponseValues(RES responseValues) {
         this.responseValues = responseValues;
     }
 
-    //possible outcomes for response types
-    //1. Response Values
-    //2. Request  Values
-    //3. Error    Values
-    //Set what we need here, so we can use it in general
+    // possible outcomes for response types
+    // 1. Response Values
+    // 2. Request  Values
+    // 3. Error    Values
+    // Set what we need here, so we can use it in general
     public  interface ResponseValues{}
     public  interface RequestValues {}
     public  interface Error{}

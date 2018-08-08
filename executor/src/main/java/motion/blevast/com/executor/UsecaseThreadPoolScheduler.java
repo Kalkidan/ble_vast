@@ -24,13 +24,13 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
 
     public UsecaseThreadPoolScheduler(){
         //Init the Threadpool
-        threadPoolExecutor = new ThreadPoolExecutor(POOL_SIZE, MAX_POOL_SIZE, TIME_OUT,
+        this.threadPoolExecutor = new ThreadPoolExecutor(POOL_SIZE, MAX_POOL_SIZE, TIME_OUT,
                 TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>());
     }
     @Override
     public void execute(Runnable runnable) {
         //Execute the runnable
-        threadPoolExecutor.execute(runnable);
+        this.threadPoolExecutor.execute(runnable);
     }
 
     /**
@@ -39,8 +39,8 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
      */
     @Override
     public <V extends UseCase.ResponseValues, E extends UseCase.Error> void
-    onSuccess(final V response, final UsecaseCallback<V, E> useCaseCallback) {
-        useCaseHandler.post(new Runnable() {
+    onSuccess(final V response, final UseCaseCallback<V, E> useCaseCallback) {
+        this.useCaseHandler.post(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "Running onSuccess():");
@@ -56,8 +56,8 @@ public class UsecaseThreadPoolScheduler implements UsecaseScheduler {
      */
     @Override
     public <V extends UseCase.ResponseValues, E extends UseCase.Error> void
-    onError(final E error, final UsecaseCallback<V, E> useCaseCallback) {
-        useCaseHandler.post(new Runnable() {
+    onError(final E error, final UseCaseCallback<V, E> useCaseCallback) {
+        this.useCaseHandler.post(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "Running onError():");

@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
-import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UseCaseCallback;
 import static junit.framework.TestCase.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -27,7 +27,8 @@ public class UseCaseTest {
     @Mock NetworkContractImpl networkContract;
     @Mock NetworkContractImpl.ResponseValues responseValues;
     @Mock NetworkContractImpl.RequestValues requestValues;
-    @Mock UsecaseCallback usecaseCallback;
+    @Mock
+    UseCaseCallback usecaseCallback;
 
     @Before
     public void setUp() {

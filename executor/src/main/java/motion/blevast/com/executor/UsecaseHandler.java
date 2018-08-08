@@ -27,7 +27,7 @@ public class UsecaseHandler {
     //Execution
     //Request values goes in --> success/failure will carry the output of the execution
     public <T extends UseCase.RequestValues, R extends UseCase.ResponseValues, E extends UseCase.Error> void
-    execute(final UseCase<T, R, E> useCase, T requestValues, UsecaseCallback<R, E> usecaseCallback){
+    execute(final UseCase<T, R, E> useCase, T requestValues, UseCaseCallback<R, E> usecaseCallback){
 
         //Steps of Execution
         //.........//........//
@@ -36,7 +36,7 @@ public class UsecaseHandler {
         useCase.setRequestValues(requestValues);
 
         //3.set usecase callback
-        useCase.setUsecaseCallback(new UseCaseCallbackHandler(usecaseCallback, this));
+        useCase.setUsecaseCallback(new  UseCaseCallbackHandler(usecaseCallback, this));
 
         //4.start executing the task
         usecaseScheduler.execute(new Runnable() {
@@ -50,13 +50,13 @@ public class UsecaseHandler {
 
     //Notifies the response from the execution
     public <V extends UseCase.ResponseValues, E extends UseCase.Error> void
-    notifyResponse(V response, UsecaseCallback<V, E> callback) {
+    notifyResponse(V response, UseCaseCallback<V, E> callback) {
         usecaseScheduler.onSuccess(response, callback);
     }
 
     //Notifies the error from the execution
     public <V extends UseCase.ResponseValues, E extends UseCase.Error> void
-    notifyError(final E error, UsecaseCallback<V, E> callback) {
+    notifyError(final E error, UseCaseCallback<V, E> callback) {
         usecaseScheduler.onError(error, callback);
     }
 }

@@ -39,8 +39,8 @@ public class LandingActivity extends BaseActivity<ActivityMainBinding> implement
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "Making a Network Call to get VAST Response");
-        VastUtil.requestAd("http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_1.xml",
-                getApplicationContext(), this);
+       /* VastUtil.requestAd("http://demo.tremorvideo.com/proddev/vast/vast_wrapper_linear_1.xml",
+                getApplicationContext(), this);*/
     }
 
     /**

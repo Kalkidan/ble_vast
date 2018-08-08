@@ -19,12 +19,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        <ImageView
+            <!--This will be reserved for future use-->
+ <!--       <ImageView
             android:layout_width="@dimen/qr_dimension"
             android:layout_height="@dimen/qr_dimension"
             android:src="@drawable/scanner_image"
             android:layout_centerInParent="true"
-            android:contentDescription="@string/description"/>
+            android:contentDescription="@string/description"/>-->
 
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>

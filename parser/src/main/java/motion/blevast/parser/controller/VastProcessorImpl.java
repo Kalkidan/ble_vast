@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UseCaseCallback;
 import motion.blevast.com.executor.UsecaseHandler;
 import motion.blevast.com.executor.connection.ConnectionParameter;
 import motion.blevast.com.executor.connection.NetworkContractImpl;
@@ -46,7 +46,7 @@ class VastProcessorImpl implements VastProcessor{
         //Execute the networking UseCase
         UsecaseHandler.getInstance().execute(new StringResponseCreator(),
                 new NetworkContractImpl.RequestValues(destinationUrl, null, connectionParameter),
-                new UsecaseCallback<StringResponseCreator.ResponseValues, NetworkContractImpl.Error>() {
+                new UseCaseCallback<StringResponseCreator.ResponseValues, NetworkContractImpl.Error>() {
             /**
              * @param response
              * onSuccess
@@ -89,7 +89,7 @@ class VastProcessorImpl implements VastProcessor{
         //Execute the use case
         UsecaseHandler.getInstance().execute(new ProcessVast(),
                 new ProcessVast.RequestValues(vastResponse, context),
-                new UsecaseCallback<ProcessVast.ResponseValues, ProcessVast.Error>() {
+                new UseCaseCallback<ProcessVast.ResponseValues, ProcessVast.Error>() {
             @Override
             public void onSuccess(ProcessVast.ResponseValues response) {
 

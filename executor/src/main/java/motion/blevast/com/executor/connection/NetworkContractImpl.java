@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import motion.blevast.com.executor.UseCase;
-import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UseCaseCallback;
 import motion.blevast.com.executor.util.Constants;
 
 /**
@@ -29,7 +29,7 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
      * @param usecaseCallback A single line of execution for executing a usecase
      */
     @Override
-    public void executeUsecase(RequestValues requestValues, UsecaseCallback usecaseCallback) {
+    public void executeUsecase(RequestValues requestValues, UseCaseCallback usecaseCallback) {
         try {
             call(requestValues, usecaseCallback);
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
      * @param request  call over the network, get the response and return it.
      */
 
-    private void call(RequestValues request, UsecaseCallback callback) throws IOException {
+    private void call(RequestValues request, UseCaseCallback callback) throws IOException {
         URL requestUrl = new URL(request.getBaseUrl());
 
         /**
@@ -143,7 +143,7 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
     private void readResponse(HttpURLConnection httpURLConnection,
                               ConnectionParameter connectionParams,
                               OutputStreamWriter outputStreamWriter,
-                              UsecaseCallback useCaseCallback) throws IOException {
+                              UseCaseCallback useCaseCallback) throws IOException {
         /*
          * Send the response back
          */

@@ -4,7 +4,7 @@ package motion.blevast.com.executor;
  * A Generic Usecase call back on success and error
  */
 
-public interface UsecaseCallback<RES, ERR> {
+public interface UseCaseCallback<RES, ERR> {
 
     //Defines a contract for the execution of the Usecase:
     //1.onSuccess()

@@ -2,7 +2,6 @@ package motion.blevast.parser.task;
 
 import android.content.Context;
 
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.lang.ref.WeakReference;
 import javax.xml.parsers.ParserConfigurationException;
 
 import motion.blevast.com.executor.UseCase;
-import motion.blevast.com.executor.UsecaseCallback;
+import motion.blevast.com.executor.UseCaseCallback;
 import motion.blevast.parser.parser.SchemaVersion;
 import motion.blevast.parser.parser.XSDParsingReport;
 import motion.blevast.parser.parser.XmlParser;
@@ -21,7 +20,7 @@ import motion.blevast.parser.vastad.model.VastData;
  *
  *
  * This is a task that will parse VAST in a pre-defined order
- * 1. Parse through the xsd validation
+ *    1. Parse through the xsd validation
  * or 2. Parse using tag by tag
  */
 
@@ -41,7 +40,7 @@ abstract class XSDValidateVast extends
      *
      */
     @Override
-    public void executeUsecase(RequestValues requestValues, UsecaseCallback<ResponseValues, Error> usecaseCallback) {
+    public void executeUsecase(RequestValues requestValues, UseCaseCallback<ResponseValues, Error> usecaseCallback) {
         //
         org.w3c.dom.Document document = null;
         /**

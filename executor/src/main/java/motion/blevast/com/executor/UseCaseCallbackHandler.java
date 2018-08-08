@@ -1,22 +1,22 @@
 package motion.blevast.com.executor;
 
-public class UseCaseCallbackHandler<R extends UseCase.ResponseValues, E extends UseCase.Error> implements UsecaseCallback<R, E> {
+public class UseCaseCallbackHandler<R extends UseCase.ResponseValues, E extends UseCase.Error> implements UseCaseCallback<R, E> {
 
-    private UsecaseCallback<R, E> usecaseCallback;
+    private UseCaseCallback<R, E> usecaseCallback;
     protected UsecaseHandler usecaseHandler;
 
 
-    public UseCaseCallbackHandler(UsecaseCallback<R, E>  usecaseCallback, UsecaseHandler usecaseHandler){
+    public UseCaseCallbackHandler(UseCaseCallback<R, E> usecaseCallback, UsecaseHandler usecaseHandler){
         this.usecaseCallback = usecaseCallback;
         this.usecaseHandler = usecaseHandler;
     }
     @Override
     public void onSuccess(R response) {
-        usecaseHandler.notifyResponse(response, usecaseCallback);
+        this.usecaseHandler.notifyResponse(response, this.usecaseCallback);
     }
 
     @Override
     public void onError(E error) {
-        usecaseHandler.notifyError(error, usecaseCallback);
+        this.usecaseHandler.notifyError(error, this.usecaseCallback);
     }
 }
