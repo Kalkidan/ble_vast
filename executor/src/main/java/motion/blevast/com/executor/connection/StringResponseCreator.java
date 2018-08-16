@@ -22,6 +22,7 @@ public class  StringResponseCreator extends NetworkContractImpl {
         return new ResponseValues(responseCode, data);
     }
 
+    //This is a string response from the network call
     public static class ResponseValues extends NetworkContractImpl.ResponseValues<String>{
 
         /**
@@ -36,11 +37,6 @@ public class  StringResponseCreator extends NetworkContractImpl {
         @Override
         public String getResponse() {
             return super.getResponse();
-        }
-
-
-        ResponseValues(int serverCode, HttpURLConnection httpURLConnection) throws IOException {
-            super(serverCode, httpURLConnection.getInputStream());
         }
 
         /**

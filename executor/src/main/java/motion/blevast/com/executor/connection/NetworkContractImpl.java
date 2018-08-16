@@ -163,10 +163,11 @@ public abstract class NetworkContractImpl<RESPONSE extends UseCase.ResponseValue
         return url.openConnection();
     }
 
-    //This is the base response for a networking call
+    // This is the base response for a networking call
     public abstract static class ResponseValues<RESPONSE> implements UseCase.ResponseValues{
 
-        //Response
+        // Response
+        // Generic response from the api call
         private RESPONSE response;
         // TODO:: we will think if we can genericize if but don't need it now.
         private int responseCode;
