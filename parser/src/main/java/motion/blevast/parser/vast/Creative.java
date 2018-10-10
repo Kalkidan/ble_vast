@@ -11,12 +11,21 @@ import motion.blevast.parser.parser.Tag;
  */
 public class Creative {
 
-    @Attribute(value = "AdID") private String id;
+    public static final String CREATIVE ="Creative" ;
+    public static final String AD_ID ="adID" ;
+    public static final String SEQUENCE ="sequence" ;
+    public static final String API_FRAMEWORK ="apiFramework" ;
+    public static final String ID ="id" ;
+
+    @Attribute(value = "adID") private String adID;
+
+    @Attribute(value = "id") private String id;
 
     @Attribute private String sequence;
 
-    @Tag
-    private Linear linear;
+    @Attribute private String apiFramework;
+
+    @Tag private Linear linear;
 
     @Tag private CompanionAds companionAds;
 
@@ -40,5 +49,25 @@ public class Creative {
 
     public NonLinearAds getNonLinearAds() {
         return nonLinearAds;
+    }
+
+    public void setLinear(Linear linear) {
+        this.linear = linear;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setAdID(String adID) {
+        this.adID = adID;
+    }
+
+    public void setApiFramework(String apiFramework) {
+        this.apiFramework = apiFramework;
+    }
+
+    public void setSequence(String sequence) {
+        this.sequence = sequence;
     }
 }

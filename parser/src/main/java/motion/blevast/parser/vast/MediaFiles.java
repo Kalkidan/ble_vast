@@ -14,9 +14,15 @@ import motion.blevast.parser.parser.Tag;
  */
 public class MediaFiles {
 
+    public static final Object MEDIA_FILE = "MediaFile";
+
     @Tag("MediaFile") private List<MediaFile> mediaFileList = new ArrayList<>();
 
     public List<MediaFile> getMediaFileList() {
         return mediaFileList;
+    }
+
+    public void setMediaFileList(MediaFile mediaFile) {
+        this.mediaFileList.add(mediaFile);
     }
 }

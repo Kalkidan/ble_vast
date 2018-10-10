@@ -18,4 +18,8 @@ public class Creatives {
     public List<Creative> getCreativeList() {
         return creativeList;
     }
+
+    public void setCreativeList(Creative creative) {
+        this.creativeList.add(creative);
+    }
 }

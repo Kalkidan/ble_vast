@@ -22,17 +22,17 @@ import motion.blevast.parser.parser.Tag;
 
 public class Wrapper {
 
-    @Tag
-    AdSystem adSystem;
+    public static final String WRAPPER ="Wrapper" ;
 
-    @Tag VASTAdTagUri vastAdTagUri;
+    @Tag protected AdSystem adSystem;
 
-    @Tag
-    Error error;
+    @Tag protected VASTAdTagUri vastAdTagUri;
 
-    @Tag Extensions extensions;
+    @Tag protected Error error;
 
-    @Tag private Creatives creatives;
+    @Tag protected Extensions extensions;
+
+    @Tag protected Creatives creatives;
 
     @Tag("Impression") private List<Impression> impressionList = new ArrayList<>();
 
@@ -59,5 +59,9 @@ public class Wrapper {
 
     public VASTAdTagUri getVastAdTagUri() {
         return vastAdTagUri;
+    }
+
+    public void setVastAdTagUri(VASTAdTagUri vastAdTagUri) {
+        this.vastAdTagUri = vastAdTagUri;
     }
 }

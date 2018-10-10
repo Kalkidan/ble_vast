@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import motion.blevast.com.executor.UseCaseCallback;
 import motion.blevast.com.executor.UsecaseHandler;
 import motion.blevast.com.executor.connection.ConnectionParameter;
@@ -26,7 +25,7 @@ class VastProcessorImpl implements VastProcessor{
     private static final String TAG =  VastProcessorImpl.class.getSimpleName();
     private static final int   WRAPPER_HIT_COUNT_MAX = 5;
 
-    //TODO:: This can be put in to a model, let it be like this for now
+    //TODO:: put this into a model, oR, use DI if allowed
     List<VastData> vastDataList = new ArrayList<>();
     int wrapperHitCount;
 

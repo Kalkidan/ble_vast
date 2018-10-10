@@ -11,6 +11,10 @@ import motion.blevast.parser.parser.Text;
  */
 public class Tracking {
 
+    public static final String EVENT = "event" ;
+    public static final String OFF_SET = "offset" ;
+    public static final String TRACKIMG = "Tracking" ;
+
     @Attribute private String event;
 
     @Attribute private String offset;
@@ -27,5 +31,17 @@ public class Tracking {
 
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public void setOffset(String offset) {
+        this.offset = offset;
     }
 }

@@ -11,8 +11,19 @@ import motion.blevast.parser.parser.Tag;
  */
 public class Linear {
 
-    @Tag
-    private Duration duration;
+    public static final String LINEAR = "Linear" ;
+    public static final String SKIP_OFF_SET = "skipoffset";
+
+    public static final String DURATION = "Duration";
+    public static final String TRACKING_EVENTS = "TrackingEvents";
+    public static final String VIDEO_CLICKS = "VideoClicks";
+    public static final String MEDIA_FILES = "MediaFiles";
+    public static final String AD_PARAMETERS = "AdParameters";
+
+    //TODO: expansion
+    public static final String ICONS = "Icons";
+
+    @Tag private Duration duration;
 
     @Tag private TrackingEvents trackingEvents;
 
@@ -22,8 +33,7 @@ public class Linear {
 
     @Tag private AdParameters adParameters;
 
-    @Attribute
-    private String skipoffset;
+    @Attribute(value = "skipoffset") private String skipoffset;
 
     public Duration getDuration() {
         return duration;
@@ -47,5 +57,31 @@ public class Linear {
 
     public String getSkipoffset() {
         return skipoffset;
+    }
+
+    //
+
+    public void setSkipoffset(String skipoffset) {
+        this.skipoffset = skipoffset;
+    }
+
+    public void setTrackingEvents(TrackingEvents trackingEvents) {
+        this.trackingEvents = trackingEvents;
+    }
+
+    public void setAdParameters(AdParameters adParameters) {
+        this.adParameters = adParameters;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public void setMediaFiles(MediaFiles mediaFiles) {
+        this.mediaFiles = mediaFiles;
+    }
+
+    public void setVideoClicks(VideoClicks videoClicks) {
+        this.videoClicks = videoClicks;
     }
 }

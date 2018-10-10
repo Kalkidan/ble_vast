@@ -27,6 +27,7 @@ import java.io.IOException;
 /**
  * This is a barcode activity to scan a url.
  * This is a simplified source of the google's camera project
+ * TODO:: For simplified usage this is enough!
  */
 
 public class BarcodeActivity extends AppCompatActivity{

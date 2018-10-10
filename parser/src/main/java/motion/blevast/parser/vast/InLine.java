@@ -25,10 +25,20 @@ import motion.blevast.parser.parser.Tag;
  * Second-level element surrounding complete ad data for a single ad
  *
  */
-public class InLine {
+public class InLine extends Wrapper{
 
-    @Tag
-    private AdSystem adSystem;
+    public static final String INLINE ="InLine" ;
+    public static final String ADSYSTEM ="AdSystem" ;
+    public static final String ADTITLE ="AdTitle" ;
+    public static final String DESCRIPTION ="Description" ;
+    public static final String SURVEY ="Survey" ;
+    public static final String ERROR ="Error" ;
+    public static final String IMPRESSION ="Impression" ;
+    public static final String CREATIVES ="Creatives" ;
+    public static final String EXTENSIONS ="Extensions" ;
+    public static final String VAST_AD_TAG_URI = "VASTAdTagURI";
+
+    //@Tag private AdSystem adSystem;
 
     @Tag AdTitle adTitle;
 
@@ -36,15 +46,15 @@ public class InLine {
 
     @Tag Survey survey;
 
-    @Tag private Error error;
+    // @Tag private Error error;
 
     @Tag Impression impression;
 
     @Tag("Impression") private List<Impression> impressionList = new ArrayList<>();
 
-    @Tag private Creatives creatives;
+    //@Tag private Creatives creatives;
 
-    @Tag private Extensions extensions;
+    //@Tag private Extensions extensions;
 
     public AdSystem getAdSystem() {
         return adSystem;
@@ -80,5 +90,45 @@ public class InLine {
 
     public Extensions getExtensions() {
         return extensions;
+    }
+
+    //This is tricky so we will have to make sure that
+    //we add all the impression to a list as it comes one by one
+    //There is no array formation in VAST Xml for <Impression> as in <Impressions><Impression/><Impression/><Impression/></Impressions>
+    //So we need to parse it as it comes in.
+    public void setImpression(Impression impression) {
+        this.impressionList.add(impression);
+    }
+
+    public void setAdSystem(AdSystem adSystem) {
+        this.adSystem = adSystem;
+    }
+
+    public void setAdTitle(AdTitle adTitle) {
+        this.adTitle = adTitle;
+    }
+
+    public void setCreatives(Creatives creatives) {
+        this.creatives = creatives;
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
+
+    public void setError(Error error) {
+        this.error = error;
+    }
+
+    public void setExtensions(Extensions extensions) {
+        this.extensions = extensions;
+    }
+
+    public void setImpressionList(List<Impression> impressionList) {
+        this.impressionList = impressionList;
+    }
+
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 }

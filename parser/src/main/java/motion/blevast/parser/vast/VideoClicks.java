@@ -13,6 +13,10 @@ import motion.blevast.parser.parser.Tag;
  */
 public class VideoClicks {
 
+    public static final String VIDEO_CLICKS = "VideoClicks" ;
+    public static final String CLICK_THROUGH = "ClickThrough";
+    public static final String CLICK_TRACKING = "ClickTracking";
+    public static final String CUSTOM_CLICK = "CustomClick";
     @Tag("ClickThrough") private ClickThrough clickThrough;
 
     @Tag("ClickTracking") private List<ClickTracking> clickTrackingList = new ArrayList<>();
@@ -23,5 +27,13 @@ public class VideoClicks {
 
     public ClickThrough getClickThrough() {
         return clickThrough;
+    }
+
+    public void setClickThrough(ClickThrough clickThrough) {
+        this.clickThrough = clickThrough;
+    }
+
+    public void setClickTrackingList(ClickTracking clickTracking) {
+        this.clickTrackingList.add(clickTracking);
     }
 }

@@ -13,10 +13,14 @@ import motion.blevast.parser.parser.Text;
  */
 
 public class VASTAdTagUri {
-    @Text
-    private String text;
+
+    @Text private String text;
 
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

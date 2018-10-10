@@ -11,10 +11,13 @@ import motion.blevast.parser.parser.Text;
 public class Description {
 
     //extensive description of the ad
-    @Text
-    private String description;
+    @Text private String description;
 
     public String getText() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

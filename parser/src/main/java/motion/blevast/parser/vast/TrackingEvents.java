@@ -19,4 +19,8 @@ public class TrackingEvents {
     public List<Tracking> getTrackingList() {
         return trackingList;
     }
+
+    public void setTrackingList(Tracking tracking) {
+        this.trackingList.add(tracking);
+    }
 }

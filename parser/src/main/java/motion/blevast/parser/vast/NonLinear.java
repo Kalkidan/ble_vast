@@ -13,6 +13,8 @@ import motion.blevast.parser.parser.Tag;
 
 public class NonLinear {
 
+    public static final String NON_LINEAR = "NonLinear" ;
+
     @Attribute String id;
 
     @Attribute int width;

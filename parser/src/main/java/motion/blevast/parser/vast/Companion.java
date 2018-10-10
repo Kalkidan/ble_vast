@@ -14,8 +14,9 @@ import motion.blevast.parser.parser.Tag;
  */
 public class Companion {
 
-    @Attribute
-    private String id;
+    public static final String COMPANION = "Companion";
+
+    @Attribute private String id;
 
     @Attribute private int width;
 
@@ -27,8 +28,7 @@ public class Companion {
 
     @Attribute private String apiFramework;
 
-    @Tag
-    private StaticResource staticResource;
+    @Tag private StaticResource staticResource;
 
     @Tag private TrackingEvents trackingEvents;
 

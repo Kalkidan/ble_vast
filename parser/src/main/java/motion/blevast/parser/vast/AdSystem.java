@@ -22,12 +22,10 @@ import motion.blevast.parser.parser.Text;
  */
 public class AdSystem {
 
-    @Attribute
-    private String version;
+    @Attribute private String version;
 
     //this will indicate the source ad server
-    @Text
-    private String sourceAdServer;
+    @Text private String sourceAdServer;
 
     public String getVersion() {
         return version;
@@ -35,5 +33,13 @@ public class AdSystem {
 
     public String getSourceAdServer() {
         return sourceAdServer;
+    }
+
+    public void setSourceAdServer(String sourceAdServer) {
+        this.sourceAdServer = sourceAdServer;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }

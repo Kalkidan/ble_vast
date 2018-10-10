@@ -34,6 +34,7 @@ public class Constants {
 
 
     public static final int USE_DEFAULT_TIMEOUT = -1;
+    public static final int  UNKNOWN = -1;
 
     public static final String AD_SELECTOR_LOAD="AD_SELECTOR_LOAD";
     public static final String CREATIVE = "CREATIVE";
