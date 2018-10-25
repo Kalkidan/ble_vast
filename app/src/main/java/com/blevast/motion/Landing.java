@@ -1,50 +1,63 @@
 package com.blevast.motion;
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.blevast.motion.callback.LandingPageCallback;
+import com.blevast.motion.databinding.LandingPageBinding;
+import com.blevast.motion.viewmodel.LandingPageViewModel;
+import javax.inject.Inject;
 
-public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewModel> implements LandingPageCallback {
+
+    //
+    @Inject SharedPreferences app;
+
+    @Override public int inflateView() {
+        return R.layout.landing_page;
+    }
+
+    //This returns the view model
+    @Override
+    public LandingPageViewModel getViewModel() {
+        return ViewModelProviders.of(this).get(LandingPageViewModel.class);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //Set the callback listener
+        getViewbinding().setVariable(BR.cb, this);
+        //Instances of score card view
+        //With provider class
+        //Score card view
+        //Get the toolbar instancee
+        Toolbar toolbar = getViewbinding().head.toolbar;
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //Get the drawer layout instance
+        DrawerLayout drawerLayout = getViewbinding().drawerLayout;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+                this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = getViewbinding().drawerLayout;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -74,11 +87,10 @@ public class Main2Activity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemClickListener(MenuItem menuItem, LandingPageViewModel landingPageViewModel) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        int id = menuItem.getItemId();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
@@ -94,8 +106,7 @@ public class Main2Activity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        getViewbinding().drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
