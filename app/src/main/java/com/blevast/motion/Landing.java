@@ -19,6 +19,7 @@ public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewMod
     //
     @Inject SharedPreferences app;
 
+    //
     @Override public int inflateView() {
         return R.layout.landing_page;
     }
@@ -32,6 +33,7 @@ public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewMod
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //
         super.onCreate(savedInstanceState);
 
         //Set the callback listener
@@ -45,12 +47,12 @@ public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewMod
 
         //Get the drawer layout instance
         DrawerLayout drawerLayout = getViewbinding().drawerLayout;
-
+        //
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
-
+        //
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
@@ -81,6 +83,7 @@ public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewMod
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            start.startFragment(Constant.SETTINGS_PAGE_FRAGMENT);
             return true;
         }
 

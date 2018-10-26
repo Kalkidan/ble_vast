@@ -19,12 +19,23 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <include
         android:id="@+id/head"
-        layout="@layout/app_bar_main2"
+        layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_below="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
 
     <com.blevast.motion.CustomNavView

@@ -10,6 +10,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.blevast.motion.callback.StartFragmentCallback;
 import com.blevast.motion.viewmodel.DefaultViewModel;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -29,6 +30,18 @@ abstract class BaseActivity<VIEWBINDING extends ViewDataBinding, VIEW_MODEL exte
 
     //When we need a common view binding
     private VIEWBINDING viewbinding;
+
+    protected StartFragmentCallback start = (String fragmentName) -> {
+
+        switch (fragmentName) {
+            case Constant.MENU_PAGE_FRAGMENT:
+                break;
+            case Constant.SETTINGS_PAGE_FRAGMENT:
+                break;
+            default:
+                break;
+        }
+    };
 
     /**
      * @param savedInstanceState

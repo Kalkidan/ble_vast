@@ -38,6 +38,8 @@ public interface AppComponent extends AndroidInjector<App> {
     @Component.Builder
     interface Builder {
 
+        //This is like passing an instance in the module
+        //This replaces the old way of doing it...
         @BindsInstance
         AppComponent.Builder application(App application);
 
