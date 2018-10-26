@@ -1,0 +1,16 @@
+package com.blevast.motion.data.response.city;
+
+import com.squareup.moshi.Json;
+
+public class Clouds {
+
+    private int all;
+
+    public Clouds(int all){
+        this.all = all;
+    }
+
+    public int getAll() {
+        return all;
+    }
+}

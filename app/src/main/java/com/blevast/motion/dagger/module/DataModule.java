@@ -23,7 +23,7 @@ public class DataModule {
     //Provides shared preferences
     @Provides
     static SharedPreferences provideSharedPreferences(App airSideApp) {
-        return airSideApp.getSharedPreferences("u2020", MODE_PRIVATE);
+        return airSideApp.getSharedPreferences("recipe", MODE_PRIVATE);
     }
 
 }

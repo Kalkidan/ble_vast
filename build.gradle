@@ -21,6 +21,12 @@ allprojects {
         google()
         jcenter()
     }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
 }
 
 task clean(type: Delete) {
@@ -39,6 +45,8 @@ ext {
     daggerVersion = DAGGER_VERSION
     retrofit = '2.4.0'
     Okhttp = '3.10.0'
+    gsonConverter = '2.3.0'
+    rxJavaAdapter = '2.3.0'
     // App dependencies
     supportLibraryVersion = '28.0.0'
    // guavaVersion = '18.0'
