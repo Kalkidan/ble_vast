@@ -17,7 +17,7 @@
 
         <activity android:name=".BarcodeActivity"></activity>
         <activity
-            android:name=".Landing"
+            android:name=".LandingActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
 

@@ -12,12 +12,15 @@ import android.view.MenuItem;
 import com.blevast.motion.callback.LandingPageCallback;
 import com.blevast.motion.databinding.LandingPageBinding;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
+
 import javax.inject.Inject;
 
-public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewModel> implements LandingPageCallback {
+public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPageViewModel> implements LandingPageCallback {
 
     //
     @Inject SharedPreferences app;
+
+    @Inject NavigationController navigationController;
 
     //
     @Override public int inflateView() {
@@ -35,7 +38,6 @@ public class Landing extends BaseActivity<LandingPageBinding, LandingPageViewMod
     protected void onCreate(Bundle savedInstanceState) {
         //
         super.onCreate(savedInstanceState);
-
         //Set the callback listener
         getViewbinding().setVariable(BR.cb, this);
         //Instances of score card view

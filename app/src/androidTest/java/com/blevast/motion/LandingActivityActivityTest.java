@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.not;
 
 
 @RunWith(AndroidJUnit4.class)
-public class LandingActivityTest {
+public class LandingActivityActivityTest {
 
     @Rule
     public ActivityTestRule<LandingActivity> landingActivityActivityTestRule = new ActivityTestRule<>(LandingActivity.class);

@@ -26,7 +26,7 @@ public class WeatherCityResponse {
         return coord;
     }
 
-   /*   public WeatherCityResponse(Coordinate coordinate,
+      public WeatherCityResponse(Coordinate coordinate,
                                List<Weather> weatherList,
                                String stations,
                                Main main,
@@ -38,21 +38,21 @@ public class WeatherCityResponse {
                                long id,
                                String name,
                                int cod){
-        this.coordinate = coordinate;
-        this.weatherList = weatherList;
+        this.coord = coordinate;
+        this.weather = weatherList;
         this.stations = stations;
         this.main = main;
         this.visibility = visibility;
         this.wind = wind;
         this.clouds = clouds;
         this.dt = dt;
-        this.system = system;
+        this.sys = system;
         this.id = id;
         this.name = name;
         this.cod = cod;
-    }*/
+    }
 
-    /*public int getCod() {
+    public int getCod() {
         return cod;
     }
 
@@ -81,11 +81,11 @@ public class WeatherCityResponse {
     }
 
     public Coordinate getCoordinate() {
-        return coordinate;
+        return coord;
     }
 
     public List<Weather> getWeatherList() {
-        return weatherList;
+        return weather;
     }
 
     public Main getMain() {
@@ -93,10 +93,10 @@ public class WeatherCityResponse {
     }
 
     public System getSystem() {
-        return system;
+        return sys;
     }
 
     public Wind getWind() {
         return wind;
-    }*/
+    }
 }
