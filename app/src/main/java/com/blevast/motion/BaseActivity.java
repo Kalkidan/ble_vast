@@ -53,7 +53,7 @@ abstract class BaseActivity<VIEWBINDING extends ViewDataBinding, VIEW_MODEL exte
         //Inflate each activity's view
         viewbinding = DataBindingUtil.setContentView(this, inflateView());
         //
-        viewbinding.setVariable(BR.vm, getViewModel() != null ? getViewModel() : defaultViewModel());
+        //viewbinding.setVariable(BR.vm, getViewModel() != null ? getViewModel() : defaultViewModel());
     }
 
 

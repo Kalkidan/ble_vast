@@ -1,9 +1,15 @@
 package com.blevast.motion.viewmodel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
+import android.provider.SyncStateContract;
+
+import com.blevast.motion.Constant;
+import com.blevast.motion.data.response.city.WeatherCityResponse;
+import com.blevast.motion.data.service.ApiResponse;
+import com.blevast.motion.data.service.ApiService;
+
+import motion.blevast.com.executor.util.Constants;
 
 /**
  * A life-cycle aware view model
@@ -14,19 +20,18 @@ import android.support.annotation.NonNull;
  * We can use {@link android.arch.lifecycle.LiveData} here.
  */
 
-public class LandingPageViewModel extends AndroidViewModel {
+public class LandingPageViewModel extends ViewModel {
 
-    private ObservableField<String> name = new ObservableField<>();
+    private ApiService apiService;
 
-    public LandingPageViewModel(@NonNull Application application) {
-        super(application);
+    public LandingPageViewModel(ApiService apiService) {
+       this.apiService = apiService;
+       //Call the back end
+
     }
 
-    public ObservableField<String> getName() {
-        return name;
-    }
 
-    public void setName(ObservableField<String> name) {
-        this.name = name;
+    public ApiService getApiService() {
+        return apiService;
     }
 }

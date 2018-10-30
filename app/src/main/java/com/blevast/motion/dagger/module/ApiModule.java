@@ -2,6 +2,7 @@ package com.blevast.motion.dagger.module;
 
 import com.blevast.motion.App;
 import com.blevast.motion.data.service.ApiService;
+import com.blevast.motion.data.service.LiveDataCallAdapterFactory;
 import com.google.gson.GsonBuilder;
 import com.squareup.moshi.Moshi;
 
@@ -83,7 +84,7 @@ public class ApiModule {
                 .client(client)//
                 .addConverterFactory(GsonConverterFactory.create())//
                 .baseUrl(baseUrl) //
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory()) //
                 .build();//
     }
 

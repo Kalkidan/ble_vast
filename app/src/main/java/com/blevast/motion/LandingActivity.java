@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.blevast.motion.callback.LandingPageCallback;
+import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.databinding.LandingPageBinding;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
 
@@ -21,6 +22,8 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
     @Inject SharedPreferences app;
 
     @Inject NavigationController navigationController;
+
+    @Inject LandingPageViewModel landingPageViewModel;
 
     //
     @Override public int inflateView() {
@@ -40,6 +43,7 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
         super.onCreate(savedInstanceState);
         //Set the callback listener
         getViewbinding().setVariable(BR.cb, this);
+
         //Instances of score card view
         //With provider class
         //Score card view
@@ -57,6 +61,10 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
         //
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        //
+        landingPageViewModel.getApiService().getWeatherByCity("London, UK", Constant.API_KEY).observe(this,
+                weatherCityResponseApiResponse ->  weatherCityResponseApiResponse.getCode()
+        );
     }
 
     @Override
