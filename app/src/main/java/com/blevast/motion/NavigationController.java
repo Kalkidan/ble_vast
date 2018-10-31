@@ -47,7 +47,7 @@ public class NavigationController {
 
     @Inject NavigationController(LandingActivity landing){
         containerId = R.id.container;
-        fragmentManager = landing.getSupportFragmentManager();
+        //fragmentManager = landing.getSupportFragmentManager();
     }
 
     public StartFragmentCallback getStartFragmentCallback() {

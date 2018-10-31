@@ -19,7 +19,7 @@ import com.blevast.motion.data.service.ApiService;
  * We can use {@link android.arch.lifecycle.LiveData} here.
  */
 
-public class LandingPageViewModel extends ViewModel {
+public class WeatherPageViewModel extends ViewModel {
 
     //These are the keys that are set from the UI
     private MutableLiveData<String> apiKey = new MutableLiveData<>();
@@ -38,7 +38,7 @@ public class LandingPageViewModel extends ViewModel {
     /**
      * @param apiService
      */
-    public LandingPageViewModel(ApiService apiService) {
+    public WeatherPageViewModel(ApiService apiService) {
        response = Transformations.switchMap(customLiveData, value -> apiService.getWeatherByCity(value.first, value.second));
        response.getValue();
     }

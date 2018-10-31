@@ -4,15 +4,15 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.blevast.motion.viewmodel.LandingPageViewModel;
+import com.blevast.motion.viewmodel.WeatherPageViewModel;
 
 import javax.inject.Provider;
 
 class ViewModelFactory implements ViewModelProvider.Factory{
 
-    private Provider<LandingPageViewModel> provider;
+    private Provider<WeatherPageViewModel> provider;
 
-    public ViewModelFactory(Provider<LandingPageViewModel> provider) {
+    public ViewModelFactory(Provider<WeatherPageViewModel> provider) {
         this.provider = provider;
     }
 

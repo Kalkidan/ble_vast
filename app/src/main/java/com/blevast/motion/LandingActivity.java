@@ -1,39 +1,31 @@
 package com.blevast.motion;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.SharedPreferences;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.blevast.motion.callback.LandingPageCallback;
-import com.blevast.motion.databinding.LandingPageBinding;
-import com.blevast.motion.viewmodel.LandingPageViewModel;
+import com.blevast.motion.viewmodel.WeatherPageViewModel;
 
-import javax.inject.Inject;
-
-public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPageViewModel> implements LandingPageCallback {
+public class LandingActivity extends Activity implements LandingPageCallback {
 
     //
-    @Inject SharedPreferences app;
+  /*  @Inject SharedPreferences app;
 
     @Inject NavigationController navigationController;
 
-    @Inject LandingPageViewModel landingPageViewModel;
+    @Inject WeatherPageViewModel landingPageViewModel;*/
 
     //
-    @Override public int inflateView() {
+   /* @Override public int inflateView() {
         return R.layout.landing_page;
     }
 
     //This returns the view model
     @Override
-    public LandingPageViewModel getViewModel() {
-        return ViewModelProviders.of(this).get(LandingPageViewModel.class);
-    }
+    public WeatherPageViewModel getViewModel() {
+        return ViewModelProviders.of(this).get(WeatherPageViewModel.class);
+    }*/
 
 
     @Override
@@ -41,7 +33,7 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
         //
         super.onCreate(savedInstanceState);
         //Set the callback listener
-        getViewbinding().setVariable(BR.cb, this);
+       /* getViewbinding().setVariable(BR.cb, this);
 
         //Instances of score card view
         //With provider class
@@ -62,25 +54,25 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
         toggle.syncState();
 
         //set as a life cycle observer...
-        getViewbinding().setLifecycleOwner(this);
+        getViewbinding().setLifecycleOwner(this);*/
 
 
-        landingPageViewModel.setApiKey("London, UK", Constant.API_KEY);
+        /*landingPageViewModel.setApiKey("London, UK", Constant.API_KEY);
 
         landingPageViewModel.getResponse().observe(this, response -> {
 
-        });
+        });*/
 
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = getViewbinding().drawerLayout;
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        //DrawerLayout drawer = getViewbinding().drawerLayout;
+       /* if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
@@ -99,7 +91,7 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            start.startFragment(Constant.SETTINGS_PAGE_FRAGMENT);
+            //start.startFragment(Constant.SETTINGS_PAGE_FRAGMENT);
             return true;
         }
 
@@ -107,7 +99,7 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
     }
 
     @Override
-    public boolean onNavigationItemClickListener(MenuItem menuItem, LandingPageViewModel landingPageViewModel) {
+    public boolean onNavigationItemClickListener(MenuItem menuItem, WeatherPageViewModel landingPageViewModel) {
         // Handle navigation view item clicks here.
         int id = menuItem.getItemId();
 
@@ -125,7 +117,7 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
 
         }
 
-        getViewbinding().drawerLayout.closeDrawer(GravityCompat.START);
+        //getViewbinding().drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }

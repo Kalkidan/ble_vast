@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vm"
-            type="com.blevast.motion.viewmodel.LandingPageViewModel"/>
+            type="com.blevast.motion.viewmodel.WeatherPageViewModel"/>
 
         <variable
             name="cb"

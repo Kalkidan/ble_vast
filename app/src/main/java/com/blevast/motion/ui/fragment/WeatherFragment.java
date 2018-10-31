@@ -3,7 +3,9 @@ package com.blevast.motion.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-public class WeatherFragment extends Fragment {
+import dagger.android.support.DaggerFragment;
+
+public class WeatherFragment extends DaggerFragment {
 
     public static WeatherFragment newInstance() {
         
