@@ -67,4 +67,12 @@ public class ApiResponse<T> {
     public int getCode() {
         return code;
     }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public T getBody() {
+        return body;
+    }
 }

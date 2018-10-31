@@ -1,15 +1,14 @@
 package com.blevast.motion.viewmodel;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
-import android.provider.SyncStateContract;
-
-import com.blevast.motion.Constant;
+import android.databinding.ObservableField;
+import com.blevast.motion.data.CustomLiveData;
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.data.service.ApiService;
-
-import motion.blevast.com.executor.util.Constants;
 
 /**
  * A life-cycle aware view model
@@ -22,16 +21,35 @@ import motion.blevast.com.executor.util.Constants;
 
 public class LandingPageViewModel extends ViewModel {
 
-    private ApiService apiService;
+    //These are the keys that are set from the UI
+    private MutableLiveData<String> apiKey = new MutableLiveData<>();
+    private MutableLiveData<String> cityName = new MutableLiveData<>();
 
+    //
+    private ObservableField<WeatherCityResponse> weatherResponse = new ObservableField<>();
+
+    //A custom live data that can carry both
+    //api key and city name
+    private CustomLiveData customLiveData = new CustomLiveData(apiKey, cityName);
+
+    //This is the observed live data
+    LiveData<ApiResponse<WeatherCityResponse>> response;
+
+    /**
+     * @param apiService
+     */
     public LandingPageViewModel(ApiService apiService) {
-       this.apiService = apiService;
-       //Call the back end
-
+       response = Transformations.switchMap(customLiveData, value -> apiService.getWeatherByCity(value.first, value.second));
+       response.getValue();
     }
 
+    public LiveData<ApiResponse<WeatherCityResponse>> getResponse() {
+        return response;
+    }
 
-    public ApiService getApiService() {
-        return apiService;
+    //Post the value of the string
+    public void setApiKey(String apiKey, String cityName) {
+        this.apiKey.postValue(apiKey);
+        this.cityName.postValue(cityName);
     }
 }

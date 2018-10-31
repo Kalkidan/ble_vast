@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.blevast.motion.callback.LandingPageCallback;
-import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.databinding.LandingPageBinding;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
 
@@ -61,10 +60,17 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
         //
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        //
-        landingPageViewModel.getApiService().getWeatherByCity("London, UK", Constant.API_KEY).observe(this,
-                weatherCityResponseApiResponse ->  weatherCityResponseApiResponse.getCode()
-        );
+
+        //set as a life cycle observer...
+        getViewbinding().setLifecycleOwner(this);
+
+
+        landingPageViewModel.setApiKey("London, UK", Constant.API_KEY);
+
+        landingPageViewModel.getResponse().observe(this, response -> {
+
+        });
+
     }
 
     @Override
