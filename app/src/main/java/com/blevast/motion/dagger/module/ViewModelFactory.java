@@ -8,11 +8,11 @@ import com.blevast.motion.viewmodel.WeatherPageViewModel;
 
 import javax.inject.Provider;
 
-class ViewModelFactory implements ViewModelProvider.Factory{
+class ViewModelFactory<T extends ViewModel> implements ViewModelProvider.Factory{
 
-    private Provider<WeatherPageViewModel> provider;
+    private Provider<T> provider;
 
-    public ViewModelFactory(Provider<WeatherPageViewModel> provider) {
+    public ViewModelFactory(Provider<T> provider) {
         this.provider = provider;
     }
 

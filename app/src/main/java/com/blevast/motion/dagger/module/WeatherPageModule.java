@@ -24,9 +24,8 @@ public class WeatherPageModule {
     @PerFragment
     @Provides
     public ViewModelProvider.Factory viewModelProvider(Provider<WeatherPageViewModel> provider){
-        return new ViewModelFactory(provider);
+        return new ViewModelFactory<>(provider);
     }
-
 
 
 }
