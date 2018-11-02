@@ -8,6 +8,11 @@ import com.blevast.motion.viewmodel.WeatherPageViewModel;
 
 import javax.inject.Provider;
 
+/**
+ * A reusable {@link ViewModelFactory#provider} factory class that is capable of
+ * injecting dagger instances of the different view models
+ *
+ */
 class ViewModelFactory<T extends ViewModel> implements ViewModelProvider.Factory{
 
     private Provider<T> provider;

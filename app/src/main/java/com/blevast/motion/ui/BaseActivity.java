@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
+import com.blevast.motion.BR;
+
 import dagger.android.support.DaggerAppCompatActivity;
 
 /**
@@ -18,10 +20,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewModel> extends DaggerAppCompatActivity {
 
     //A common binding
-    private V binding;
-
-    //View model
-    private M viewModel;
+    protected V binding;
 
     protected abstract @LayoutRes int getActivityView();
 
@@ -31,6 +30,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, getActivityView());
+        binding.setVariable(BR.vm, getViewModel());
     }
 
     @Override

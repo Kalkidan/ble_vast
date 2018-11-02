@@ -2,7 +2,7 @@ package com.blevast.motion.dagger.module;
 
 import com.blevast.motion.dagger.scope.PerActivity;
 import com.blevast.motion.dagger.scope.PerFragment;
-import com.blevast.motion.ui.activity.LandingActivity;
+import com.blevast.motion.ui.activity.landing.LandingActivity;
 import com.blevast.motion.ui.fragment.WeatherFragment;
 
 import dagger.Module;
@@ -13,7 +13,7 @@ public abstract class ActivityBindingModule {
 
 
     @PerFragment
-    @ContributesAndroidInjector(modules = WeatherPageModule.class)
+    @ContributesAndroidInjector(modules = FragmentModule.class)
     abstract WeatherFragment landingPageInjector();
 
     @PerActivity

@@ -1,14 +1,8 @@
-package com.blevast.motion.ui.activity;
+package com.blevast.motion.ui.activity.landing;
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 //
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-//
-import android.support.design.widget.NavigationView;
+import android.os.ConditionVariable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 //
@@ -16,45 +10,59 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.blevast.motion.BR;
+import com.blevast.motion.Constant;
+import com.blevast.motion.NavigationController;
 import com.blevast.motion.R;
 import com.blevast.motion.databinding.ActivityBaseBinding;
 import com.blevast.motion.ui.BaseActivity;
 import com.blevast.motion.viewmodel.LandingActivityViewModel;
 
-public class LandingActivity extends BaseActivity<ActivityBaseBinding, LandingActivityViewModel> implements NavigationView.OnNavigationItemSelectedListener {
+import javax.inject.Inject;
 
+public class LandingActivity extends BaseActivity<ActivityBaseBinding, LandingActivityViewModel> implements Callback{
+
+    //View Model instances
+    @Inject  LandingActivityViewModel viewModel;
+
+    @Inject NavigationController navigationController;
+
+    //
     @Override
     protected int getActivityView() {
         return R.layout.activity_base;
     }
 
+    //
     @Override
     protected LandingActivityViewModel getViewModel() {
-        return null;
+        return viewModel;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_base);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Toolbar toolbar = binding.header.toolbar;
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = binding.drawerLayout;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this,
+                drawer,
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        );
+        binding.setVariable(BR.cb, this);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = binding.drawerLayout;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -84,28 +92,15 @@ public class LandingActivity extends BaseActivity<ActivityBaseBinding, LandingAc
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public boolean onNavigationItemClickListener(MenuItem menuItem, LandingActivityViewModel viewModel) {
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (menuItem.getItemId()){
+            case R.id.nav_weather:
+                    navigationController.getStartFragmentCallback().startFragment(Constant.WEATHER_FRAGMENT);
+                break;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }

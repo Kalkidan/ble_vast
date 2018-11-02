@@ -13,7 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class WeatherPageModule {
+public class FragmentModule {
 
     @PerFragment
     @Provides

@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".BarcodeActivity" />
         <activity
-            android:name=".ui.activity.LandingActivity"
+            android:name=".ui.activity.landing.LandingActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

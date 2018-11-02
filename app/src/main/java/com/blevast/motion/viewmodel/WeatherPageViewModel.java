@@ -5,10 +5,10 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableField;
-import com.blevast.motion.data.CustomLiveData;
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.data.service.ApiService;
+import com.blevast.motion.ui.CustomLiveData;
 
 /**
  * A life-cycle aware view model
@@ -23,14 +23,15 @@ public class WeatherPageViewModel extends ViewModel {
 
     //These are the keys that are set from the UI
     private MutableLiveData<String> apiKey = new MutableLiveData<>();
+
+    //
     private MutableLiveData<String> cityName = new MutableLiveData<>();
 
     //
     private ObservableField<WeatherCityResponse> weatherResponse = new ObservableField<>();
 
-    //A custom live data that can carry both
-    //api key and city name
-    private CustomLiveData customLiveData = new CustomLiveData(apiKey, cityName);
+    //
+    private CustomLiveData<MutableLiveData<String>, MutableLiveData<String>> cusomLiveData = new CustomLiveData(apiKey, cityName);
 
     //This is the observed live data
     LiveData<ApiResponse<WeatherCityResponse>> response;
@@ -39,17 +40,30 @@ public class WeatherPageViewModel extends ViewModel {
      * @param apiService
      */
     public WeatherPageViewModel(ApiService apiService) {
-       response = Transformations.switchMap(customLiveData, value -> apiService.getWeatherByCity(value.first, value.second));
+       response = Transformations.switchMap(
+               cusomLiveData, input -> apiService.getWeatherByCity(cityName.getValue(), apiKey.getValue())
+       );
        response.getValue();
     }
 
+    //CustomLiveData live data
     public LiveData<ApiResponse<WeatherCityResponse>> getResponse() {
         return response;
     }
 
-    //Post the value of the string
+    /**
+     * Post the value of the string that are being observed
+     */
     public void setApiKey(String apiKey, String cityName) {
         this.apiKey.postValue(apiKey);
         this.cityName.postValue(cityName);
+    }
+
+    public ObservableField<WeatherCityResponse> getWeatherResponse() {
+        return weatherResponse;
+    }
+
+    public void setWeatherResponse(ObservableField<WeatherCityResponse> weatherResponse) {
+        this.weatherResponse = weatherResponse;
     }
 }

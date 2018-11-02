@@ -1,4 +1,4 @@
-package com.blevast.motion.callback;
+package com.blevast.motion.ui;
 
 public interface StartFragmentCallback {
 

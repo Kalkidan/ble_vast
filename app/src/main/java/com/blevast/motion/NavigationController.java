@@ -2,14 +2,12 @@ package com.blevast.motion;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
-import com.blevast.motion.callback.StartFragmentCallback;
+import com.blevast.motion.ui.StartFragmentCallback;
+import com.blevast.motion.ui.activity.landing.LandingActivity;
 import com.blevast.motion.ui.fragment.WeatherFragment;
 
 import javax.inject.Inject;
-
-import motion.blevast.parser.vast.StaticResource;
 
 /**
  * A stand alone class that will provide
@@ -20,7 +18,7 @@ public class NavigationController {
     private int containerId;
     private FragmentManager fragmentManager;
 
-    private StartFragmentCallback startFragmentCallback = (String fragmentName) -> {
+    private StartFragmentCallback startFragmentCallback = (fragmentName) -> {
 
         Fragment fragment = null;
         switch (fragmentName){
@@ -44,6 +42,11 @@ public class NavigationController {
 
         }
     };
+
+    @Inject public NavigationController(LandingActivity landingActivity){
+        this.containerId = R.id.fragment_container;
+        this.fragmentManager = landingActivity.getSupportFragmentManager();
+    }
 
     public StartFragmentCallback getStartFragmentCallback() {
         return startFragmentCallback;

@@ -8,7 +8,11 @@ import android.support.design.widget.NavigationView;
 import android.util.AttributeSet;
 
 @BindingMethods(value =
-        @BindingMethod(type = NavigationView.class, attribute = "onNavigationItemSelected", method = "setNavigationItemSelectedListener"))
+        @BindingMethod(type = NavigationView.class,
+                attribute = "onNavigationItemSelected",
+                method = "setNavigationItemSelectedListener"
+        )
+)
 public class CustomNavView extends NavigationView {
     public CustomNavView(Context context) {
         super(context);
