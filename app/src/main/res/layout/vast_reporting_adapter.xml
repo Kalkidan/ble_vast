@@ -4,9 +4,6 @@
 
     <data>
         <variable
-            name="vastModel"
-            type="com.blevast.motion.model.VastAdapterModel"/>
-        <variable
             name="callback"
             type="com.blevast.motion.VastAdapterListener"/>
     </data>

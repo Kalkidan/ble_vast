@@ -13,7 +13,7 @@ import dagger.Provides;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Data layer instances, we need this at the application level
+ * BaseData layer instances, we need this at the application level
  *
  */
 @Module

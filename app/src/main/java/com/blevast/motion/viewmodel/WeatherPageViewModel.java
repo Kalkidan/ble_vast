@@ -5,10 +5,15 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableField;
+import android.text.TextUtils;
+
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.data.service.ApiService;
+import com.blevast.motion.model.ApiCredentialData;
+import com.blevast.motion.model.BaseData;
 import com.blevast.motion.ui.CustomLiveData;
+import com.google.android.gms.common.api.Api;
 
 /**
  * A life-cycle aware view model
@@ -21,17 +26,14 @@ import com.blevast.motion.ui.CustomLiveData;
 
 public class WeatherPageViewModel extends ViewModel {
 
-    //These are the keys that are set from the UI
-    private MutableLiveData<String> apiKey = new MutableLiveData<>();
-
     //
-    private MutableLiveData<String> cityName = new MutableLiveData<>();
+    private MutableLiveData<ApiCredentialData> weatherCreds = new MutableLiveData<>();
 
     //
     private ObservableField<WeatherCityResponse> weatherResponse = new ObservableField<>();
 
     //
-    private CustomLiveData<MutableLiveData<String>, MutableLiveData<String>> cusomLiveData = new CustomLiveData(apiKey, cityName);
+    private CustomLiveData<ApiCredentialData> cusomLiveData = new CustomLiveData(weatherCreds);
 
     //This is the observed live data
     LiveData<ApiResponse<WeatherCityResponse>> response;
@@ -41,9 +43,13 @@ public class WeatherPageViewModel extends ViewModel {
      */
     public WeatherPageViewModel(ApiService apiService) {
        response = Transformations.switchMap(
-               cusomLiveData, input -> apiService.getWeatherByCity(cityName.getValue(), apiKey.getValue())
+               cusomLiveData, input -> {
+                   if (TextUtils.isEmpty(input.getApiKey())){}
+                       return apiService.getWeatherByCity(input.getCityName(), input.getApiKey());
+               }
+
        );
-       response.getValue();
+       //response.getValue();
     }
 
     //CustomLiveData live data
@@ -55,8 +61,7 @@ public class WeatherPageViewModel extends ViewModel {
      * Post the value of the string that are being observed
      */
     public void setApiKey(String apiKey, String cityName) {
-        this.apiKey.postValue(apiKey);
-        this.cityName.postValue(cityName);
+        this.weatherCreds.setValue(new ApiCredentialData(apiKey, cityName));
     }
 
     public ObservableField<WeatherCityResponse> getWeatherResponse() {

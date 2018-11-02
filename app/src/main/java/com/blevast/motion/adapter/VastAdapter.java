@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import com.blevast.motion.R;
 import com.blevast.motion.VastAdapterListener;
 import com.blevast.motion.databinding.VastReportingAdapterBinding;
-import com.blevast.motion.model.VastAdapterModel;
 
 /**
  *
@@ -34,7 +33,6 @@ public class VastAdapter extends RecyclerView.Adapter implements VastAdapterList
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         DataBoundViewHolder<VastReportingAdapterBinding>  vastHolder = (DataBoundViewHolder<VastReportingAdapterBinding>) holder;
-        vastHolder.binding.setVastModel(new VastAdapterModel());
         vastHolder.binding.setCallback(this);
     }
 
