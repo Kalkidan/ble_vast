@@ -21,9 +21,9 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
 
     //A common binding
     protected V binding;
-
+    //
     protected abstract @LayoutRes int getActivityView();
-
+    //
     protected abstract M getViewModel();
 
     @Override

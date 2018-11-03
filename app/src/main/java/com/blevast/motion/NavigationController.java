@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.blevast.motion.ui.StartFragmentCallback;
 import com.blevast.motion.ui.activity.landing.LandingActivity;
-import com.blevast.motion.ui.fragment.WeatherFragment;
+import com.blevast.motion.ui.fragment.AdFragment;
 
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ public class NavigationController {
             case Constant.SETTINGS_PAGE_FRAGMENT:
                 break;
             case Constant.WEATHER_FRAGMENT:
-                fragment = WeatherFragment.newInstance();
+                fragment = AdFragment.newInstance();
                 break;
             default:
                 break;

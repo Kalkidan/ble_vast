@@ -96,7 +96,7 @@ public class LandingActivity extends BaseActivity<ActivityBaseBinding, LandingAc
     public boolean onNavigationItemClickListener(MenuItem menuItem, LandingActivityViewModel viewModel) {
 
         switch (menuItem.getItemId()){
-            case R.id.nav_weather:
+            case R.id.nav_ad:
                     navigationController.getStartFragmentCallback().startFragment(Constant.WEATHER_FRAGMENT);
                 break;
         }
