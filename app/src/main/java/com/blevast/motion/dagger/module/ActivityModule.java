@@ -2,8 +2,8 @@ package com.blevast.motion.dagger.module;
 
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.blevast.motion.dagger.scope.PerActivity;
-import com.blevast.motion.viewmodel.LandingActivityViewModel;
+import com.blevast.motion.dagger.scope.PerHighlightActivity;
+import com.blevast.motion.viewmodel.HighlightsPageViewModel;
 
 import javax.inject.Provider;
 
@@ -13,15 +13,15 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
 
-    @PerActivity
+    @PerHighlightActivity
     @Provides
-    public LandingActivityViewModel provideViewModel(){
-        return new LandingActivityViewModel();
+    public HighlightsPageViewModel provideViewModel(){
+        return new HighlightsPageViewModel();
     }
 
-    @PerActivity
+    @PerHighlightActivity
     @Provides
-    public ViewModelProvider.Factory viewModelProvider(Provider<LandingActivityViewModel> provider){
+    public ViewModelProvider.Factory viewModelProvider(Provider<HighlightsPageViewModel> provider){
         return new ViewModelFactory<>(provider);
     }
 }

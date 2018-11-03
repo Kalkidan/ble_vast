@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.blevast.motion.ui.StartFragmentCallback;
-import com.blevast.motion.ui.activity.landing.LandingActivity;
+import com.blevast.motion.ui.activity.landing.HighLightActivity;
 import com.blevast.motion.ui.fragment.AdFragment;
 
 import javax.inject.Inject;
@@ -43,7 +43,7 @@ public class NavigationController {
         }
     };
 
-    @Inject public NavigationController(LandingActivity landingActivity){
+    @Inject public NavigationController(HighLightActivity landingActivity){
         this.containerId = R.id.fragment_container;
         this.fragmentManager = landingActivity.getSupportFragmentManager();
     }

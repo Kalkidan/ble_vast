@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.blevast.motion.viewmodel.LandingActivityViewModel" />
+            type="com.blevast.motion.viewmodel.HighlightsPageViewModel" />
 
         <variable
             name="cb"

@@ -42,7 +42,7 @@ public class BarCodeActivityTest {
         //
         //barcodeActivityActivityTestRule.
         //barcodeActivityActivityTestRule.launchActivity(new Intent());
-        //intended(hasComponent(LandingActivity.class.getName()));
+        //intended(hasComponent(HighLightActivity.class.getName()));
         //onView(withText("Camera Permission Not Granted!")).check(matches(isDisplayed()));
         onView(withId(R.id.redirect_url)).check(matches(not(withText(""))));
     }
