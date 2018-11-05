@@ -43,13 +43,7 @@ public class WeatherPageViewModel extends ViewModel {
      */
     public WeatherPageViewModel(ApiService apiService) {
        response = Transformations.switchMap(
-               cusomLiveData, input -> {
-                   if (TextUtils.isEmpty(input.getApiKey())){}
-                       return apiService.getWeatherByCity(input.getCityName(), input.getApiKey());
-               }
-
-       );
-       //response.getValue();
+               cusomLiveData, input -> apiService.getWeatherByCity(input.getCityName(), input.getApiKey()));
     }
 
     //CustomLiveData live data

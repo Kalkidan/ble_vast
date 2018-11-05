@@ -26,13 +26,14 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
     //
     protected abstract M getViewModel();
 
+    //
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, getActivityView());
         binding.setVariable(BR.vm, getViewModel());
     }
-
+    //
     @Override
     protected void onStart() {
         super.onStart();

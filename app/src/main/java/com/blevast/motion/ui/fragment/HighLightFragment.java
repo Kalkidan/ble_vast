@@ -8,16 +8,15 @@ import com.blevast.motion.R;
 import com.blevast.motion.databinding.AdPageBinding;
 import com.blevast.motion.ui.BaseFragment;
 import com.blevast.motion.viewmodel.WeatherPageViewModel;
-
 import javax.inject.Inject;
 
-public class AdFragment extends BaseFragment<AdPageBinding, WeatherPageViewModel> {
+public class HighLightFragment extends BaseFragment<AdPageBinding, WeatherPageViewModel> {
 
     @Inject WeatherPageViewModel viewModel;
 
-    public static AdFragment newInstance() {
+    public static HighLightFragment newInstance() {
         Bundle args = new Bundle();
-        AdFragment fragment = new AdFragment();
+        HighLightFragment fragment = new HighLightFragment();
         fragment.setArguments(args);
         return fragment;
     }

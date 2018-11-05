@@ -5,8 +5,7 @@ import com.blevast.motion.dagger.scope.PerFragment;
 import com.blevast.motion.dagger.scope.PerLandingActivity;
 import com.blevast.motion.ui.activity.landing.HighLightActivity;
 import com.blevast.motion.ui.activity.landing.LandingActivity;
-import com.blevast.motion.ui.fragment.AdFragment;
-import com.blevast.motion.viewmodel.LandingPageViewModel;
+import com.blevast.motion.ui.fragment.HighLightFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -17,7 +16,7 @@ public abstract class ActivityBindingModule {
 
     @PerFragment
     @ContributesAndroidInjector(modules = FragmentModule.class)
-    abstract AdFragment landingPageInjector();
+    abstract HighLightFragment landingPageInjector();
 
     @PerHighlightActivity
     @ContributesAndroidInjector(modules = ActivityModule.class)
