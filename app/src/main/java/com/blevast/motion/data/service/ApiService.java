@@ -1,10 +1,9 @@
 package com.blevast.motion.data.service;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 
-import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

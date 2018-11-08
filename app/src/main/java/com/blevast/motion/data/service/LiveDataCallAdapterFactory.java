@@ -1,8 +1,6 @@
 package com.blevast.motion.data.service;
 
-import android.arch.lifecycle.LiveData;
-
-import com.google.android.gms.common.api.Api;
+import androidx.lifecycle.LiveData;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
@@ -14,7 +12,7 @@ import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 
 /**
- * This is a custom {@link android.arch.lifecycle.LiveData} adapter
+ * This is a custom {@link androidx.lifecycle.LiveData} adapter
  * factory--rather than using the rxjava one so we can make things easier
  * on the observability side
  */

@@ -43,4 +43,6 @@ public class HighLightFragment extends BaseFragment<AdPageBinding, WeatherPageVi
     }
 
 
+
+
 }

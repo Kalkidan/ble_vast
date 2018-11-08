@@ -1,6 +1,6 @@
 package com.blevast.motion.dagger.module;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.blevast.motion.dagger.scope.PerHighlightActivity;
 import com.blevast.motion.dagger.scope.PerLandingActivity;

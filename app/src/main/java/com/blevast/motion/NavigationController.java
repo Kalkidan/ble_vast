@@ -1,7 +1,8 @@
 package com.blevast.motion;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.blevast.motion.ui.StartFragmentCallback;
 import com.blevast.motion.ui.activity.landing.HighLightActivity;
@@ -33,14 +34,21 @@ public class NavigationController {
                 break;
         }
 
+        FragmentTransaction transaction = null;
         if(fragment != null) {
-            fragmentManager.
+            transaction = fragmentManager.
                     beginTransaction().
-                    replace(containerId, fragment, fragmentName).
-                    //TODO:: there are times we dont wanna add to bkstck
-                    addToBackStack(fragmentName).commit();
+                    replace(containerId, fragment, fragmentName);
 
         }
+
+        if(fragmentManager.findFragmentByTag(fragmentName) == null){
+            transaction.addToBackStack(fragmentName).commit();
+        } else {
+            transaction.commit();
+        }
+
+        return 0;
     };
 
     @Inject public NavigationController(HighLightActivity landingActivity){

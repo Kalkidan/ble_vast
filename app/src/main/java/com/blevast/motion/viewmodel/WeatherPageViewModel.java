@@ -1,19 +1,16 @@
 package com.blevast.motion.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ObservableField;
-import android.text.TextUtils;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
+import androidx.databinding.ObservableField;
 
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 import com.blevast.motion.data.service.ApiResponse;
 import com.blevast.motion.data.service.ApiService;
 import com.blevast.motion.model.ApiCredentialData;
-import com.blevast.motion.model.BaseData;
 import com.blevast.motion.ui.CustomLiveData;
-import com.google.android.gms.common.api.Api;
 
 /**
  * A life-cycle aware view model
@@ -21,7 +18,7 @@ import com.google.android.gms.common.api.Api;
  * a life-cycle aware ways and means. Such as screen
  * orientations.
  *
- * We can use {@link android.arch.lifecycle.LiveData} here.
+ * We can use {@link androidx.lifecycle.LiveData} here.
  */
 
 public class WeatherPageViewModel extends ViewModel {

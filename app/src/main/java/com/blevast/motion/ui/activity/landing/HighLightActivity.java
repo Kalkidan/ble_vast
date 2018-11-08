@@ -1,12 +1,14 @@
 package com.blevast.motion.ui.activity.landing;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 //
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 //
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,10 +25,14 @@ import javax.inject.Inject;
 public class HighLightActivity extends BaseActivity<ActivityBaseBinding, HighlightsPageViewModel> implements Callback{
 
     //View Model instances
-    @Inject
-    HighlightsPageViewModel viewModel;
+    @Inject HighlightsPageViewModel viewModel;
 
     @Inject NavigationController navigationController;
+
+    public static Intent createIntent(Context applicationContext) {
+        return new Intent(applicationContext, HighLightActivity.class);
+    }
+
 
     //
     @Override
@@ -58,15 +64,26 @@ public class HighLightActivity extends BaseActivity<ActivityBaseBinding, Highlig
         binding.setVariable(BR.cb, this);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        //
+        navigationController.getStartFragmentCallback().startFragment(Constant.WEATHER_FRAGMENT);
     }
 
     @Override
     public void onBackPressed() {
+
+        //Takecare of the drawer
         DrawerLayout drawer = binding.drawerLayout;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
+            //
         } else {
-            super.onBackPressed();
+            if(getSupportFragmentManager().getBackStackEntryCount() ==1){
+                finish();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

@@ -1,7 +1,7 @@
 package com.blevast.motion.dagger.module;
 
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.blevast.motion.dagger.scope.PerFragment;
 import com.blevast.motion.data.service.ApiService;

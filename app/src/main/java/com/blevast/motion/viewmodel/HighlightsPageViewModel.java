@@ -1,6 +1,6 @@
 package com.blevast.motion.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 public class HighlightsPageViewModel extends ViewModel {
 }

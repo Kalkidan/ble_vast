@@ -2,6 +2,6 @@ package com.blevast.motion.ui;
 
 public interface StartFragmentCallback {
 
-    void startFragment(String string);
+    int startFragment(String string);
 
 }

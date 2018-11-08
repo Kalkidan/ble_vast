@@ -1,11 +1,11 @@
 package com.blevast.motion.ui;
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModel;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 
 import com.blevast.motion.BR;
 
@@ -32,6 +32,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, M extends ViewMode
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, getActivityView());
         binding.setVariable(BR.vm, getViewModel());
+        binding.setVariable(BR.cb, this);
     }
     //
     @Override

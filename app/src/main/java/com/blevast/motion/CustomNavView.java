@@ -1,14 +1,15 @@
 package com.blevast.motion;
 
 import android.content.Context;
-import android.databinding.BindingMethod;
-import android.databinding.BindingMethods;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
+import androidx.annotation.Nullable;
+import com.google.android.material.navigation.NavigationView;
 import android.util.AttributeSet;
 
 @BindingMethods(value =
-        @BindingMethod(type = NavigationView.class,
+        @BindingMethod(
+                type = NavigationView.class,
                 attribute = "onNavigationItemSelected",
                 method = "setNavigationItemSelectedListener"
         )
