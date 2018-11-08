@@ -6,8 +6,8 @@
     </style>
     <style name="AppTheme.NoActionAndStatusBar" parent="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <!--<item name="windowNoTitle">true</item>-->
+       <!-- <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -15,6 +15,13 @@
         <item name="colorPrimary">@color/design_default_color_primary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimaryTeal</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+       <!-- <item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+<!--This is for some special cases like the collapsing toolbar-->
+    <style name="AppTheme.NoActionBarButStatusBar" parent="AppTheme.NoActionBar.StatusBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/design_default_color_primary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryTeal</item>
     </style>
 </resources>

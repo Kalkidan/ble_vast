@@ -30,7 +30,7 @@ public class HighLightActivity extends BaseActivity<ActivityBaseBinding, Highlig
     @Inject NavigationController navigationController;
 
     public static Intent createIntent(Context applicationContext) {
-        return new Intent(applicationContext, HighLightActivity.class);
+        return new Intent(applicationContext, TrailActivity.class);
     }
 
 

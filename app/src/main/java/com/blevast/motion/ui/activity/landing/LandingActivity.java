@@ -12,6 +12,7 @@ import com.blevast.motion.viewmodel.callback.LandingPageCallback;
 
 import javax.inject.Inject;
 
+
 public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPageViewModel> implements LandingPageCallback {
 
     @Inject LandingPageViewModel viewModel;

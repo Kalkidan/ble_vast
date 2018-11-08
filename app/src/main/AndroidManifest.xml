@@ -30,6 +30,7 @@
             android:name=".ui.activity.landing.HighLightActivity"
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.activity.landing.TrailActivity" android:theme="@style/AppTheme.NoActionBarButStatusBar"/>
     </application>
 
 </manifest>
