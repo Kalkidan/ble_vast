@@ -1,8 +1,5 @@
 package com.blevast.motion;
 
-
-
-
 import com.blevast.motion.dagger.component.AppComponent;
 import com.blevast.motion.dagger.component.DaggerAppComponent;
 
@@ -19,7 +16,6 @@ public class App extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-
         AppComponent appComponent = DaggerAppComponent.builder().application(this).build();
         appComponent.inject(App.this);
 

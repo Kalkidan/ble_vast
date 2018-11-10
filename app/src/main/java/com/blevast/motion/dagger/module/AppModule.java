@@ -9,7 +9,7 @@ import dagger.Module;
 @Module
 public abstract class AppModule { //TODO:: define what goes in here globally
 
-    //Since Dagger can instantiate no-args modules
+    //Since Body can instantiate no-args modules
 
     @Binds abstract Context provideContext(App app);
 }

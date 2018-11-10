@@ -43,6 +43,7 @@ class VastProcessorImpl implements VastProcessor{
 
         Log.d(TAG, "Make a network call to get the String Url");
         //Execute the networking UseCase
+
         UsecaseHandler.getInstance().execute(new StringResponseCreator(),
                 new NetworkContractImpl.RequestValues(destinationUrl, null, connectionParameter),
                 new UseCaseCallback<StringResponseCreator.ResponseValues, NetworkContractImpl.Error>() {

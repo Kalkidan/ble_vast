@@ -19,7 +19,7 @@ public class NavigationController {
     private int containerId;
     private FragmentManager fragmentManager;
 
-    private StartFragmentCallback startFragmentCallback = (fragmentName) -> {
+    private StartFragmentCallback startFragmentCallback = fragmentName -> {
 
         Fragment fragment = null;
         switch (fragmentName){

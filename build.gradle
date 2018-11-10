@@ -33,7 +33,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def DAGGER_VERSION  = 2.13
+def DAGGER_VERSION  = 2.15
 
 // Define versions in a single place
 ext {

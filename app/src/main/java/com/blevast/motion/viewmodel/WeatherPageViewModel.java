@@ -35,6 +35,8 @@ public class WeatherPageViewModel extends ViewModel {
     //This is the observed live data
     LiveData<ApiResponse<WeatherCityResponse>> response;
 
+    LiveData<String> stringLiveData;
+
     /**
      * @param apiService
      */

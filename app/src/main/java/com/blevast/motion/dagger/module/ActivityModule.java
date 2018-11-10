@@ -6,37 +6,40 @@ import com.blevast.motion.dagger.scope.PerHighlightActivity;
 import com.blevast.motion.dagger.scope.PerLandingActivity;
 import com.blevast.motion.viewmodel.HighlightsPageViewModel;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
-
 import javax.inject.Provider;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class ActivityModule {
 
-    @PerHighlightActivity
+    /**
+     * When dealing with the instance of the module, the STATIC keyword
+     * will no longer need the instance state of the module to access the
+     * methods.
+     * This is an example of new instances every time it is required.
+     */
     @Provides
-    public HighlightsPageViewModel provideViewModel(){
+    static HighlightsPageViewModel provideViewModel(){
         return new HighlightsPageViewModel();
     }
 
     @PerHighlightActivity
     @Provides
-    public ViewModelProvider.Factory viewModelProvider(Provider<HighlightsPageViewModel> provider){
+    static ViewModelProvider.Factory viewModelProvider(Provider<HighlightsPageViewModel> provider){
         return new ViewModelFactory<>(provider);
     }
 
     @PerLandingActivity
     @Provides
-    public LandingPageViewModel landingPageViewModel(){
+    static LandingPageViewModel landingPageViewModel(){
         return new LandingPageViewModel();
     }
 
 
     @PerLandingActivity
     @Provides
-    public ViewModelProvider.Factory landingPageViewFactory(Provider<LandingPageViewModel> provider){
+    static ViewModelProvider.Factory landingPageViewFactory(Provider<LandingPageViewModel> provider){
         return new ViewModelFactory<>(provider);
     }
 

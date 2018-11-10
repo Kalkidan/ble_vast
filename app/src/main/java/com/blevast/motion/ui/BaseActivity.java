@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.widget.ImageSwitcher;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 

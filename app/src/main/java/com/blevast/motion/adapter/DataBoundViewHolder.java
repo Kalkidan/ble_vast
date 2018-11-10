@@ -11,8 +11,6 @@ import android.view.ViewGroup;
  * Created by kaltadesse on 3/14/17.
  * A generic ViewHolder that wraps a generated ViewDataBinding class.
  *
- * This is adopted from google UI demo tool kit
- *
  * @param <T> The type of the ViewDataBinding class
  */
 public class DataBoundViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder {
