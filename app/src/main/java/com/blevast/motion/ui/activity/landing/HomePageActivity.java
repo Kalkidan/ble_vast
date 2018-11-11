@@ -22,12 +22,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, HomePageViewModel>
-        implements NavigationViewClickListener {
+import javax.inject.Inject;
+
+public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, HomePageViewModel> implements NavigationViewClickListener {
+
+    @Inject ViewModelProvider.Factory modelFactory;
 
     @Override
     protected int getActivityView() {
@@ -36,7 +41,7 @@ public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, Home
 
     @Override
     protected HomePageViewModel getViewModel() {
-        return null;
+        return ViewModelProviders.of(this, modelFactory).get(HomePageViewModel.class);
     }
 
     public static Intent getIntent(Context applicationContext) {
@@ -49,6 +54,7 @@ public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, Home
 
         Toolbar toolbar = binding.header.toolbar;
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         DrawerLayout drawer = binding.drawerLayout;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
