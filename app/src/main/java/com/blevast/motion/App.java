@@ -1,7 +1,7 @@
 package com.blevast.motion;
 
-import com.blevast.motion.dagger.component.AppComponent;
-import com.blevast.motion.dagger.component.DaggerAppComponent;
+import com.blevast.motion.di.component.AppComponent;
+import com.blevast.motion.di.component.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;

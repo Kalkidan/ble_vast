@@ -5,8 +5,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.blevast.motion.ui.StartFragmentCallback;
-import com.blevast.motion.ui.activity.landing.HighLightActivity;
-import com.blevast.motion.ui.fragment.HighLightFragment;
 
 import javax.inject.Inject;
 
@@ -28,7 +26,6 @@ public class NavigationController {
             case Constant.SETTINGS_PAGE_FRAGMENT:
                 break;
             case Constant.WEATHER_FRAGMENT:
-                fragment = HighLightFragment.newInstance();
                 break;
             default:
                 break;
@@ -50,11 +47,6 @@ public class NavigationController {
 
         return 0;
     };
-
-    @Inject public NavigationController(HighLightActivity landingActivity){
-        this.containerId = R.id.fragment_container;
-        this.fragmentManager = landingActivity.getSupportFragmentManager();
-    }
 
     public StartFragmentCallback getStartFragmentCallback() {
         return startFragmentCallback;

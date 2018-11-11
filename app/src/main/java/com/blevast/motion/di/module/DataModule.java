@@ -1,4 +1,4 @@
-package com.blevast.motion.dagger.module;
+package com.blevast.motion.di.module;
 
 
 import android.content.SharedPreferences;

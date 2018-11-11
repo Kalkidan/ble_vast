@@ -1,4 +1,4 @@
-package com.blevast.motion.dagger.scope;
+package com.blevast.motion.di.scope;
 
 import java.lang.annotation.Retention;
 

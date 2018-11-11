@@ -1,6 +1,8 @@
 package com.blevast.motion.viewmodel;
 
 
+import javax.inject.Inject;
+
 import androidx.lifecycle.ViewModel;
 import androidx.databinding.ObservableField;
 
@@ -10,9 +12,9 @@ public class LandingPageViewModel extends ViewModel {
 
     private ObservableField<String> landingButtonText = new ObservableField<>();
 
-    public void getUserInfo() {
+    @Inject LandingPageViewModel(){ }
 
-    }
+    public void getUserInfo() { }
 
     public void setUrl(String url) {
         this.url.set(url);

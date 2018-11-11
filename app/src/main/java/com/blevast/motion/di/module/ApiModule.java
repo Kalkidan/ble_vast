@@ -1,10 +1,8 @@
-package com.blevast.motion.dagger.module;
+package com.blevast.motion.di.module;
 
 import com.blevast.motion.App;
 import com.blevast.motion.data.service.ApiService;
 import com.blevast.motion.data.service.LiveDataCallAdapterFactory;
-import com.google.gson.GsonBuilder;
-import com.squareup.moshi.Moshi;
 
 import javax.inject.Singleton;
 import dagger.Module;
@@ -14,7 +12,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 //
