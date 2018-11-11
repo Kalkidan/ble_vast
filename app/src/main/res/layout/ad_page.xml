@@ -9,7 +9,7 @@
 
         <variable
             name="cb"
-            type="com.blevast.motion.viewmodel.callback.WeatherPageCallback" />
+            type="com.blevast.motion.viewmodel.callback.NavigationViewClickListener" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

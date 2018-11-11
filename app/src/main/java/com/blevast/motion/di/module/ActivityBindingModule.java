@@ -1,5 +1,6 @@
 package com.blevast.motion.di.module;
 
+import com.blevast.motion.ui.activity.landing.HomePageActivity;
 import com.blevast.motion.ui.activity.landing.LandingActivity;
 
 
@@ -12,6 +13,9 @@ public abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector
     abstract LandingActivity mainActivity();
+
+    @ContributesAndroidInjector
+    abstract HomePageActivity homePageActivity();
 
 
 }

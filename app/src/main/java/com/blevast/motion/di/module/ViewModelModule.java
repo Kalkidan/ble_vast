@@ -2,6 +2,7 @@ package com.blevast.motion.di.module;
 
 
 import com.blevast.motion.di.TrialViewModel;
+import com.blevast.motion.viewmodel.HomePageViewModel;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
 
 import androidx.lifecycle.ViewModel;
@@ -22,6 +23,11 @@ public  abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LandingPageViewModel.class)
     abstract ViewModel landingPage(LandingPageViewModel model);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomePageViewModel.class)
+    abstract ViewModel homePage(HomePageViewModel model);
 
 
     @Binds

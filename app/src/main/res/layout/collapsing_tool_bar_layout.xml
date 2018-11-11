@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.blevast.motion.viewmodel.HomePageViewModel"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -28,8 +31,6 @@
                 android:layout_height="350dp"
                 app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleGravity="bottom"
-                app:expandedTitleMarginEnd="@dimen/activity_horizontal_margin"
-                app:expandedTitleMarginStart="@dimen/activity_horizontal_margin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@string/app_name">
 
