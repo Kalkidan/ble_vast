@@ -6,6 +6,7 @@ import com.blevast.motion.ui.fragment.PersonalDetailPage;
 import com.blevast.motion.viewmodel.HomePageViewModel;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
 import com.blevast.motion.viewmodel.PersonalDetailViewModel;
+import com.blevast.motion.viewmodel.ReposFragmentViewModel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,6 +37,10 @@ public  abstract class ViewModelModule {
     @ViewModelKey(PersonalDetailViewModel.class)
     abstract ViewModel personalViewModel(PersonalDetailViewModel model);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ReposFragmentViewModel.class)
+    abstract ViewModel reposFragmentViewModel(ReposFragmentViewModel model);
 
     @Binds
     abstract ViewModelProvider.Factory factory(ViewModelFactoryImpl viewModelFactory);

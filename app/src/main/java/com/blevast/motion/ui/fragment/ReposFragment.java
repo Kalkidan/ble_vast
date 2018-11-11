@@ -6,9 +6,8 @@ import javax.inject.Inject;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import dagger.android.support.DaggerFragment;
 
-public class PersonalDetailPage extends BaseFragment {
+public class ReposFragment extends BaseFragment {
 
     @Inject ViewModelProvider.Factory modelFactory;
 

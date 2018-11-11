@@ -10,4 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_home_page">HomePageActivity</string>
+    <string name="personal_detail_page">Personal Page</string>
+    <string name="repo_page">Repo Page</string>
 </resources>
