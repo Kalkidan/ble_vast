@@ -18,6 +18,9 @@ public class BackgroundDataJobService extends JobService {
 
         Log.d(TAG, "Job Started");
         jobFinished(params, false);
+
+        //If we use Async task or loaders here we need to tell the system
+        //that we are on it and return true.
         return false;
     }
 

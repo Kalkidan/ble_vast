@@ -67,3 +67,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion" //new
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion" //new
 }
+
+
