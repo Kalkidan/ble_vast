@@ -25,6 +25,8 @@ public class SchedulerHelper {
      * This is a flag for executing one timer task
      */
     public static final String GCM_ONEOFF_TAG = "oneoff|[0,0]";
+    private static final long REFRESH_INTERVAL  = 5 * 1000;
+    private static final long INTERVAL = 10 *1000;
 
     /**
      *
@@ -44,25 +46,10 @@ public class SchedulerHelper {
         final JobScheduler jobScheduler = (JobScheduler) context.getSystemService(
                 Context.JOB_SCHEDULER_SERVICE);
 
-
         if (jobScheduler == null) return;
-        /**
-         *
-         * The component part we want to run.
-         *
-         */
+        //define component name
         final ComponentName name = new ComponentName(context, classz);
-
-        /**
-         *
-         * Schedule the {@link JobInfo}
-         */
         final int result = jobScheduler.schedule(getJobInfo(id, scheduleTime, name));
-
-        /**
-         *
-         * Check if we successfuly scheduled the {@link JobInfo}
-         */
         if (result == JobScheduler.RESULT_SUCCESS) {
 
         }else {
@@ -88,33 +75,38 @@ public class SchedulerHelper {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private static JobInfo getJobInfo(final int id, final long period, final ComponentName name) {
 
-        final JobInfo jobInfo;
+        JobInfo jobInfo = null;
 
-        if (ApiUtil.isAndroid_O()) {
+        /**
+         * This is just a trial that will show us that N is always running 15mins.
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             jobInfo = new JobInfo.Builder(id, name)
-                    .setMinimumLatency(period)
+                    //.setMinimumLatency(period)
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                     .setRequiresDeviceIdle(false)
-                    .setRequiresBatteryNotLow(true)
-                    .setPersisted(true)
+                    .setPeriodic(INTERVAL, REFRESH_INTERVAL)
+                    //Android O required .setRequiresBatteryNotLow(true)
+                    //This is for boot complete .setPersisted(true)
                     .build();
-        } else {
+        } else{}
+        /*} else {
 
-            /**
+            *//**
              *
              *
              * This is just good to have it here.
              * Not that we care about this.
              *
              * TODO:: JUST for having it.
-             */
+             *//*
             jobInfo = new JobInfo.Builder(id, name)
                     .setMinimumLatency(period)
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                     .setRequiresDeviceIdle(false)
-                    .setPersisted(true)
-                    .build();
-        }
+                    //This is for boot complete .setPersisted(true)
+                    .build();*/
+        //}
 
         return jobInfo;
     }

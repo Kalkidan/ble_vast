@@ -1,5 +1,6 @@
 package com.blevast.motion.ui.fragment;
 
+import com.blevast.motion.R;
 import com.blevast.motion.ui.BaseFragment;
 
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ public class PersonalDetailPage extends BaseFragment {
 
     @Override
     protected int getFragmentLayout() {
-        return 0;
+        return R.layout.personal_detail_fragment;
     }
 
     @Override

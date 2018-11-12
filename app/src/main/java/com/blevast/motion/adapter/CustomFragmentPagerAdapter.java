@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.blevast.motion.Constant;
 import com.blevast.motion.R;
+import com.blevast.motion.ui.fragment.PersonalDetailPage;
+import com.blevast.motion.ui.fragment.ReposFragment;
 
 import javax.inject.Inject;
 
@@ -24,12 +26,20 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+
+        switch (position){
+            case 0:
+                return new PersonalDetailPage();
+            case 1:
+                return new ReposFragment();
+                default:
+                    return new DefaultFragmnet();
+        }
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 2;
     }
 
     @Nullable

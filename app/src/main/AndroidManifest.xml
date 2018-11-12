@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blevast.motion">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -27,6 +29,15 @@
         <activity
             android:name=".ui.activity.landing.HomePageActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <service android:name="BackgroundDataJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <receiver android:name="OldWayOfListeningToWifiChange" android:enabled="true">
+          <!--  <intent-filter>
+            <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        </intent-filter>-->
+        </receiver>
     </application>
 
 </manifest>

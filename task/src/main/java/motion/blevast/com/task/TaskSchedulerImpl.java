@@ -1,5 +1,6 @@
 package motion.blevast.com.task;
 
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 
@@ -28,10 +29,34 @@ public class TaskSchedulerImpl implements TaskScheduler{
         threadPoolExecutor = new ThreadPoolExecutor(POOL_SIZE, MAX_POOL_SIZE, TIME_OUT,
                 TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>());
 
-        //A common handler thread.
-        HandlerThread iniThread = new HandlerThread("VASDK[" + Math.abs(new Random().nextInt()) + "]");
+        //A common handler thread...Only running in one thread
+        HandlerThread iniThread = new HandlerThread("KAL[" + Math.abs(new Random().nextInt()) + "]");
         iniThread.start();
         taskHandler = new TaskHandler(iniThread.getLooper());
+
+        /****************************************************
+         * Basic differences here
+         ***************************************************/
+        Thread tr = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+        tr.start();
+        tr.getId();
+
+        HandlerThread htr = new HandlerThread("");
+        htr.getLooper();
+
+        /******************************************
+         * Taking care of the message is the {@link android.os.Handler} job
+         ****************************************/
+
+        Handler handler = new Handler();
+
+        //This handler is owned by the UI thread
+
 
     }
 

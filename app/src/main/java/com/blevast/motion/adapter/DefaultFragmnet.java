@@ -1,20 +1,14 @@
-package com.blevast.motion.ui.fragment;
+package com.blevast.motion.adapter;
 
-import com.blevast.motion.R;
 import com.blevast.motion.ui.BaseFragment;
 
-import javax.inject.Inject;
-
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
-public class ReposFragment extends BaseFragment {
-
-    @Inject ViewModelProvider.Factory modelFactory;
-
+public class DefaultFragmnet extends BaseFragment {
     @Override
     protected int getFragmentLayout() {
-        return R.layout.repo_fragment;
+        return 0;
     }
 
     @Override
