@@ -1,15 +1,15 @@
 package com.blevast.motion.ui.fragment;
 
 import com.blevast.motion.R;
+import com.blevast.motion.databinding.PersonalDetailFragmentBinding;
 import com.blevast.motion.ui.BaseFragment;
+import com.blevast.motion.viewmodel.PersonalDetailViewModel;
 
 import javax.inject.Inject;
-
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import dagger.android.support.DaggerFragment;
+import androidx.lifecycle.ViewModelProviders;
 
-public class PersonalDetailPage extends BaseFragment {
+public class PersonalDetailPage extends BaseFragment<PersonalDetailFragmentBinding, PersonalDetailViewModel> {
 
     @Inject ViewModelProvider.Factory modelFactory;
 
@@ -24,7 +24,7 @@ public class PersonalDetailPage extends BaseFragment {
     }
 
     @Override
-    protected ViewModel getViewModel() {
-        return null;
+    protected PersonalDetailViewModel getViewModel() {
+        return ViewModelProviders.of(this, modelFactory).get(PersonalDetailViewModel.class);
     }
 }
