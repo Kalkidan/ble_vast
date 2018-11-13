@@ -34,6 +34,9 @@ public class ApiModule {
     //Weather end point base url
     public static final HttpUrl WEATHER_END_POINT = HttpUrl.parse("https://samples.openweathermap.org");
 
+    //
+    public static final String GIT_HUB_END_POINT = "https://api.github.com";
+
     //End point
     @Provides @Singleton
     public HttpUrl provideUrl(){ return WEATHER_END_POINT; }
@@ -80,7 +83,7 @@ public class ApiModule {
         return new Retrofit.Builder() //
                 .client(client)//
                 .addConverterFactory(GsonConverterFactory.create())//
-                .baseUrl(baseUrl) //
+                .baseUrl(GIT_HUB_END_POINT) //
                 .addCallAdapterFactory(new LiveDataCallAdapterFactory()) //
                 .build();//
     }

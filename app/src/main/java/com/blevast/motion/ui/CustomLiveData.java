@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 public class CustomLiveData<T> extends MediatorLiveData<T> {
+
+    public CustomLiveData(){
+
+    }
     /**
      * @param apiCredentials this is a custom {@link LiveData<T>}
      *                       that will add a source and observe it when

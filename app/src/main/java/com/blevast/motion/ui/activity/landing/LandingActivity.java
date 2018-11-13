@@ -5,11 +5,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.blevast.motion.AppCypher;
 import com.blevast.motion.CustomIntentService;
 import com.blevast.motion.CustomResultReciever;
 import com.blevast.motion.R;
+import com.blevast.motion.data.response.User;
 import com.blevast.motion.databinding.LandingPageBinding;
 import com.blevast.motion.ui.BaseActivity;
 import com.blevast.motion.viewmodel.LandingPageViewModel;
@@ -46,6 +48,13 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getViewModel().setLandingButtonText("Start");
+        getViewModel().setUser("Kalkidan");
+
+        //Observe the data change
+        getViewModel().getUserData().observe(this, user ->{
+           //Set Avatar
+
+        });
 
     }
 

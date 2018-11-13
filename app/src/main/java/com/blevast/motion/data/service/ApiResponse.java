@@ -1,9 +1,7 @@
 package com.blevast.motion.data.service;
 
 import android.text.TextUtils;
-
 import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 

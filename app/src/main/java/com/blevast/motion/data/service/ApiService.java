@@ -2,9 +2,11 @@ package com.blevast.motion.data.service;
 
 import androidx.lifecycle.LiveData;
 
+import com.blevast.motion.data.response.User;
 import com.blevast.motion.data.response.city.WeatherCityResponse;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -14,6 +16,9 @@ public interface ApiService {
 
     @GET("/data/2.5/weather")
     LiveData<ApiResponse<WeatherCityResponse>> getWeatherByCity(@Query("q") String city, @Query("appid") String apiKey);
+
+    @GET("/users/{user}")
+    LiveData<ApiResponse<User>>  getGithubUser(@Path("user") String user);
 
 
 }
