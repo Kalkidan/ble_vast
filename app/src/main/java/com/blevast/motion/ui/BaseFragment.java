@@ -15,7 +15,7 @@ import com.blevast.motion.BR;
 
 import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment<V extends ViewDataBinding, M extends ViewModel> extends DaggerFragment {
+public abstract class BaseFragment<V extends ViewDataBinding, M> extends DaggerFragment {
 
     protected V binding;
 
@@ -25,9 +25,17 @@ public abstract class BaseFragment<V extends ViewDataBinding, M extends ViewMode
 
     protected abstract M getViewModel();
 
+    protected abstract void createViewModle();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override

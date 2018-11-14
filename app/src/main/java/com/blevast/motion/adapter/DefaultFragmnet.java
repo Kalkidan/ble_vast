@@ -20,4 +20,9 @@ public class DefaultFragmnet extends BaseFragment {
     protected ViewModel getViewModel() {
         return null;
     }
+
+    @Override
+    protected void createViewModle() {
+
+    }
 }

@@ -2,34 +2,23 @@ package com.blevast.motion.ui.activity.landing;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
-import com.blevast.motion.BackgroundDataJobService;
 import com.blevast.motion.R;
 import com.blevast.motion.adapter.CustomFragmentPagerAdapter;
+import com.blevast.motion.data.response.git.User;
 import com.blevast.motion.databinding.ActivityHomePageBinding;
 import com.blevast.motion.ui.BaseActivity;
 import com.blevast.motion.viewmodel.HomePageViewModel;
 import com.blevast.motion.viewmodel.callback.NavigationViewClickListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.view.View;
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.annotation.RequiresApi;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
-import motion.blevast.com.executor.v26.SchedulerHelper;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,29 +43,35 @@ public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, Home
         return new Intent(applicationContext, HomePageActivity.class);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //
         Toolbar toolbar = binding.header.toolbar;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        //
         DrawerLayout drawer = binding.drawerLayout;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
         ViewPager vp = binding.header.viewpager;
 
+        CustomFragmentPagerAdapter adapter;
         //Setup the viewpager
-        vp.setAdapter(new CustomFragmentPagerAdapter(this.getSupportFragmentManager(), getApplicationContext()));
-
+        vp.setAdapter(adapter = new CustomFragmentPagerAdapter(this.getSupportFragmentManager(), getApplicationContext()));
         //Set up the tab layout
         binding.header.detailTabs.setupWithViewPager(vp);
+
+        getViewModel().setGithubUser("Kalkidan");
+
+        //Start observe data
+        getViewModel().getUserDataResponse().observe(this, user -> {
+           User gitHubUser = user.getBody();
+           getViewModel().setAvatarUrl(gitHubUser.getAvatarUrl());
+
+        });
     }
 
     @Override

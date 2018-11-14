@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryTeal">#008577</color>
     <color name="white">#FFF</color>
+    <color name="shadow_color">#d8d8d8</color>
+    <color name="black">#000000</color>
 </resources>

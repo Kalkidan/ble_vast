@@ -1,4 +1,4 @@
-package com.blevast.motion.data.response;
+package com.blevast.motion.data.response.git;
 
 /**
  * A user data that is in github

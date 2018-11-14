@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+    <data>
+        <variable
+            name="vm"
+            type="com.blevast.motion.viewmodel.HomePageViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:orientation="vertical"
+                    android:rowCount="8">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/login_name"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.login}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/avatar_url"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/width"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.AvatarUrl}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:text="@string/html_url"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.HtmlUrl}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/subscription_url"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+
+                    <TextView
+                        android:id="@+id/scalable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.SubscriptionsUrl}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/organization_url"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/aspect_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.OrganizationsUrl}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/repos_url"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/tracking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.ReposUrl}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/user_type"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/resource_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.Type}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:background="@drawable/rectangle_drawable_with_shadown"
+                        android:padding="@dimen/text_padding"
+                        android:text="@string/last_update"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                    <TextView
+                        android:id="@+id/resource_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/creative_right_margin"
+                        android:layout_marginLeft="@dimen/column_left_margin"
+                        android:padding="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="@{vm.userObservableData.UpdatedAt}"
+                        android:textSize="@dimen/personal_page_text_size" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

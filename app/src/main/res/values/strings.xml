@@ -12,4 +12,13 @@
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="personal_detail_page">Personal Page</string>
     <string name="repo_page">Repo Page</string>
+    <string name="login_name">Log In:</string>
+    <string name="avatar_url">Avatar Url:</string>
+    <string name="html_url">Html Url:</string>
+    <string name="subscription_url">Subscription Url:</string>
+    <string name="organization_url">Organization Url:</string>
+    <string name="repos_url">Repos Url:</string>
+    <string name="user_type">User Type:</string>
+    <string name="last_update">Last Update:</string>
+    <string name="organization">Organization:</string>
 </resources>

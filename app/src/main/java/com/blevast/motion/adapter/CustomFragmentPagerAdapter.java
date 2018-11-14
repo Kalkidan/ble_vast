@@ -2,15 +2,11 @@ package com.blevast.motion.adapter;
 
 import android.content.Context;
 
-import com.blevast.motion.Constant;
 import com.blevast.motion.R;
 import com.blevast.motion.ui.fragment.PersonalDetailPage;
-import com.blevast.motion.ui.fragment.ReposFragment;
-
-import javax.inject.Inject;
+import com.blevast.motion.ui.fragment.SubscriptionFragment;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -31,7 +27,7 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new PersonalDetailPage();
             case 1:
-                return new ReposFragment();
+                return new SubscriptionFragment();
                 default:
                     return new DefaultFragmnet();
         }
