@@ -14,7 +14,17 @@ public class BitMapAsyncLoader extends FetchAsyncLoader<Bitmap> {
     @Nullable
     @Override
     public Bitmap loadInBackground() {
-        //Load up the bitmap
         return null;
     }
+
+    @Override
+    protected void onStartLoading() {
+        super.onStartLoading();
+    }
+
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+    }
+
 }

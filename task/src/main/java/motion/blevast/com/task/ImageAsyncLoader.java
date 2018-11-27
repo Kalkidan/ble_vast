@@ -9,12 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.Loader;
 
-public class ImageAsyncLoadker implements androidx.loader.app.LoaderManager.LoaderCallbacks<Bitmap> {
+//This is a lifecycle callback for loaders
+//At different steps, different lifecycle
+//is called
+public class ImageAsyncLoader implements androidx.loader.app.LoaderManager.LoaderCallbacks<Bitmap> {
 
 
     private Context context;
 
-    public ImageAsyncLoadker(Context fetchActivity) {
+    public ImageAsyncLoader(Context fetchActivity) {
         this.context = fetchActivity;
     }
 

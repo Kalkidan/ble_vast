@@ -25,7 +25,8 @@ public class SubscriptionsAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return DataBoundViewHolder.create(parent, R.layout.subscriptions_row);
+        //return DataBoundViewHolder.create(parent, R.layout.subscriptions_row);
+        return null;
     }
 
     @Override

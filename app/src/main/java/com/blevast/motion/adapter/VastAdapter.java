@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.blevast.motion.R;
 import com.blevast.motion.VastAdapterListener;
+import com.blevast.motion.databinding.ActivityHomePageBinding;
 import com.blevast.motion.databinding.VastReportingAdapterBinding;
 
 /**
@@ -13,10 +14,19 @@ import com.blevast.motion.databinding.VastReportingAdapterBinding;
  * This will be a general adapter
  */
 
-public class VastAdapter extends RecyclerView.Adapter implements VastAdapterListener {
+public class VastAdapter extends DataBoundListAdapter<String, ActivityHomePageBinding> {
+    @Override
+    protected ActivityHomePageBinding createViewBinding(ViewGroup parent, int viewType) {
+        return DataBoundViewHolder.create(parent, R.layout.activity_home_page);
+    }
+
+    @Override
+    protected void bind(ActivityHomePageBinding binding, int position) {
+
+    }
 
 
-    @NonNull
+   /* @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
@@ -44,5 +54,5 @@ public class VastAdapter extends RecyclerView.Adapter implements VastAdapterList
     @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
-    }
+    }*/
 }

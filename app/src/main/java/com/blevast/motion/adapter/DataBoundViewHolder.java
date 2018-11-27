@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 /**
- * Created by kaltadesse on 3/14/17.
  * A generic ViewHolder that wraps a generated ViewDataBinding class.
  *
  * @param <T> The type of the ViewDataBinding class
@@ -31,10 +30,10 @@ public class DataBoundViewHolder<T extends ViewDataBinding> extends RecyclerView
      * @param <T>      The type of the Binding class that will be generated for the <code>layoutId</code>.
      * @return A new ViewHolder that has a reference to the binding class
      */
-    public static <T extends ViewDataBinding> DataBoundViewHolder<T> create(ViewGroup parent,
+    public static <T extends ViewDataBinding> T create(ViewGroup parent,
                                                                             @LayoutRes int layoutId) {
         T binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 layoutId, parent, false);
-        return new DataBoundViewHolder<>(binding);
+        return binding;
     }
 }

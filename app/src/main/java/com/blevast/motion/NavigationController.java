@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.blevast.motion.ui.StartFragmentCallback;
+import com.blevast.motion.ui.activity.landing.LandingActivity;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,10 @@ public class NavigationController {
 
     private int containerId;
     private FragmentManager fragmentManager;
+
+    @Inject NavigationController(LandingActivity landingActivity){
+        this.fragmentManager = landingActivity.getSupportFragmentManager();
+    }
 
     private StartFragmentCallback startFragmentCallback = fragmentName -> {
 

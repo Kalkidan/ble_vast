@@ -13,6 +13,7 @@ import com.blevast.motion.viewmodel.HomePageViewModel;
 import com.blevast.motion.viewmodel.callback.NavigationViewClickListener;
 
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingComponent;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,6 +43,11 @@ public class HomePageActivity extends BaseActivity<ActivityHomePageBinding, Home
 
     public static Intent getIntent(Context applicationContext) {
         return new Intent(applicationContext, HomePageActivity.class);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override

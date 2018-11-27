@@ -51,7 +51,6 @@ public class LandingActivity extends BaseActivity<LandingPageBinding, LandingPag
      */
     private void setUpCustomIntentServiceReceiver() {
         new CustomResultReciever(new Handler()).setReceiver((resultCode, resultData) -> {
-
             //lets do what we want from here when we receive the messaging
         });
     }
