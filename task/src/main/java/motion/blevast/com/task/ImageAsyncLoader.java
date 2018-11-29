@@ -17,6 +17,9 @@ public class ImageAsyncLoader implements androidx.loader.app.LoaderManager.Loade
 
     private Context context;
 
+    /**
+     * @param fetchActivity
+     */
     public ImageAsyncLoader(Context fetchActivity) {
         this.context = fetchActivity;
     }
@@ -36,6 +39,7 @@ public class ImageAsyncLoader implements androidx.loader.app.LoaderManager.Loade
     public void onLoaderReset(@NonNull androidx.loader.content.Loader<Bitmap> loader) {
 
     }
+
 }
 
 

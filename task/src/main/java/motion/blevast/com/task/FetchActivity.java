@@ -1,4 +1,5 @@
 package motion.blevast.com.task;
+import android.app.LoaderManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -25,12 +26,14 @@ public class FetchActivity extends AppCompatActivity {
         fetchAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         fetchAsyncTask.cancel(true);
 
+
         //Loaders
         //If the loader created by the same id is already in use
         //We will be reusing the loader again and again
         //We can reference it, but usually no use
         //we can handle it in the callback
-        Loader<Bitmap> loader = this.getSupportLoaderManager().initLoader(0, null, new ImageAsyncLoader(this));
+        //use the loader manager from teh anroidx jetpack
+        Loader<Bitmap> loader = androidx.loader.app.LoaderManager.getInstance(this).initLoader(0, null, new ImageAsyncLoader(this));
         //this.getSupportLoaderManager().restartLoader()
 
 

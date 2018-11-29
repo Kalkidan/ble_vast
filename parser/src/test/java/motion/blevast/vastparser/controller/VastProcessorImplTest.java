@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class VastProcessorImplTest {
 
-    @InjectMocks
+    @InjectMocks //this creates the real instance
     VastProcessorImpl vastProcessorImpl;
 
     @Before public void setUp() throws IOException{
@@ -29,9 +29,6 @@ public class VastProcessorImplTest {
     @Test public void vast_processor_impl_test(){
         //
         assertNotNull(vastProcessorImpl);
-        assertTrue("The value is ", vastProcessorImpl.getVast(
-                "https://http://demo.tremorvideo.com/proddev/vast/vast_inline_nonlinear.xml.google.com",
-                new ConnectionParameter()));
 
         //Execute the networking UseCase
     }

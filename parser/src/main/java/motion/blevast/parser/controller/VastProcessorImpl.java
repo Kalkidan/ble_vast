@@ -19,7 +19,7 @@ import motion.blevast.parser.vastad.model.VastData;
  * Vast process contract implementation.
  */
 
-class VastProcessorImpl implements VastProcessor{
+public class VastProcessorImpl implements VastProcessor{
 
 
     private static final String TAG =  VastProcessorImpl.class.getSimpleName();

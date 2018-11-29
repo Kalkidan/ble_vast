@@ -39,6 +39,7 @@ public class LandingActivityActivityTest {
 
     @Test
     public void is_app_running(){
+
         //(landingActivityActivityTestRule.getActivity()).runVastProcessor();
         onView(withId(R.id.redirect_url)).check(matches(not(withText(""))));
 

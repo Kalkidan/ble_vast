@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.List;
 
 //Loaders basics
-public class JsonParsingAsyncTaskLoader extends AsyncTaskLoader<List<String>> {
+public class JsonParsingAsyncTaskLoader extends BaseAsyncLoader<List<String>> {
 
     private List<String> list;
 
